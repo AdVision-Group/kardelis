@@ -7,7 +7,7 @@
 ### Dizajn
 - podľa **grafického návrhu**, ktorý sa nachádza v repozitári
 - ikony a obrázky pushnem dávam zatial dočasné, niektoré ešte pošlem finálne v priebehu budúceho týždňa
-- textový obsah stránky pushnem do repozitára hneď, ako ich od klienta získame
+- textový obsah stránky pushnem do repozitára hneď, ako ich od klienta získame, zatiaľ použi placeholders
 
 ### Funkcionalita
 - pri kliknutí na menu link v headeri smooth scroll na danú časť webstránky
