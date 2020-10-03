@@ -124,6 +124,30 @@ module.exports = {
               link: "www.google.com"
             }
           ]
+        },
+        {
+          heading: "Kontakt",
+          address: {
+            rows: ["Bratislavská 3, 851 20", "Bratislava, Slovensko", "info@kardelis.sk", "+421 910 566 233"],
+
+          }
+        },
+        {
+          heading: "Osobné údaje",
+          links: [
+            {
+              name: "Ochrana osobných údajov",
+              slug: '/gdpr'
+            },
+            {
+              name: "Zmluvné podmienky",
+              slug: "/terms-and-services"
+            },
+            {
+              name: "Cookies",
+              slug: "/cookies"
+            }
+          ]
         }
       ]
     }
