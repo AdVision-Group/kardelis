@@ -1,0 +1,30 @@
+.footer-styles {
+    padding: 5rem 0;
+    background-color: #504743ff;
+    color: #fff;
+}
+
+.row-styles {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .col-styles {
+        h3 {
+            margin-bottom: 2rem;
+        }
+
+        ul {
+            list-style: none;
+
+            li {
+                margin-bottom: .5rem;
+
+                a {
+                    text-decoration: none;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
