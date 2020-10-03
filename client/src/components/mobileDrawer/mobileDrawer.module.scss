@@ -11,13 +11,16 @@
         animation: slideIn 0.7s ease-in-out;
         opacity: 1;
         top: 8rem;
+        z-index: 99999;
     
         ul {
             list-style: none;
             text-align: center;
     
             li {
-                margin-bottom: 2rem;
+                &:not(:last-child) {
+                    margin-bottom: 2rem;
+                }
     
                 a {
                     font-size: 2.2rem;
