@@ -1,9 +1,17 @@
 import React from 'react'
 
-const PartnersSection = () => {
+import { partnersStyles } from './partnersSection.module.scss'
+
+const PartnersSection = ({ data }) => {
     return (
-        <section>
-            <h1>Partners section</h1>
+        <section className={partnersStyles}>
+            {data.map(({ link, name }, idx) => {
+                return (
+                    <div key={idx}>
+                        <a href={link}>{name}</a>
+                    </div>
+                )
+            })}
         </section>
     )
 }
