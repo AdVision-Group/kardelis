@@ -12,7 +12,7 @@ import MapSection from '../sections/mapSection/mapSection'
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title="Domov" />
 
     <HeroSection />
     <ServicesSection />

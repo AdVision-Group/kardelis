@@ -1,6 +1,6 @@
 import React from "react"
 
-const Header = ({ siteTitle }) => (
+const Header = () => (
   <header>
     <div>
       <h1>Logo</h1>
@@ -8,10 +8,10 @@ const Header = ({ siteTitle }) => (
     <nav>
       <ul>
         <li>
-          <a>Link</a>
+          <a href='/'>Link</a>
         </li>
         <li>
-          <a>Link</a>
+          <a href='/'>Link</a>
         </li>
       </ul>
     </nav>
