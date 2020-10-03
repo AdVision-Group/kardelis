@@ -13,4 +13,14 @@ html {
 body {
   font-size: 1.6rem;
   font-family: 'Roboto', sans-serif;
+  background-color: #efefef;
+}
+
+main {
+  margin-top: 8rem;
+}
+
+.container {
+  max-width: 115rem;
+  margin: 0 auto;
 }
