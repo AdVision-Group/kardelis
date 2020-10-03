@@ -1,0 +1,57 @@
+$sub-color: #f9f7f5ff;
+$main-color: #baafabff;
+
+@mixin shrinkLabel {
+    left: 5px;
+  top: -15px;
+  font-size: 12px;
+  color: #000;
+}
+
+@mixin labelStyles {
+    color: #baafabff;
+    font-size: 16px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 10px;
+    top: 10px;
+    transition: 300ms ease all;
+}
+
+.textarea-container-styles {
+  position: relative;
+  // margin: 45px 0;
+
+  .textarea-styles {
+    background: none;
+    background-color:  #f9f7f5ff;
+    color: #000;
+    font-size: 18px;
+    padding: 10px 10px 10px 10px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $sub-color;
+    margin: 25px 0;
+    resize: none;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus ~ .label-styles {
+      @include shrinkLabel();
+    }
+    } 
+
+    .label-styles {
+        @include labelStyles();
+
+        }
+    .shrink-label-Styles {
+        @include labelStyles();
+        @include shrinkLabel();
+    }
+}
