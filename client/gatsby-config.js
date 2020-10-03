@@ -128,7 +128,12 @@ module.exports = {
         {
           heading: "Kontakt",
           address: {
-            rows: ["Bratislavská 3, 851 20", "Bratislava, Slovensko", "info@kardelis.sk", "+421 910 566 233"],
+            rows: [
+              "Bratislavská 3, 851 20",
+              "Bratislava, Slovensko",
+              "info@kardelis.sk",
+              "+421 910 566 233"
+            ],
 
           }
         },
