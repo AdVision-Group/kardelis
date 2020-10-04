@@ -25,7 +25,7 @@ const HeroSection = ({ data }) => {
     return (
         <BackgroundImage
             Tag={`section`}
-            id={`hero-background`}
+            id={`domov`}
             className={heroStyles}
             fluid={bgImg}
         >

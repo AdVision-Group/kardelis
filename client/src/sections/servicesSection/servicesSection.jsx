@@ -20,7 +20,7 @@ const ServicesSection = ({ data }) => {
     `)
 
   return (
-    <section className={servicesStyles}>
+    <section id='sluzby' className={servicesStyles}>
       {data.map(({ heading, content }, idx) => {
         return (
           <div className={containerStyles} key={idx}>

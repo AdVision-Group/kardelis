@@ -13,7 +13,7 @@ const ConstactSection = ({ data }) => {
 
     const { heading } = data
     return (
-        <section className={contactStyles}>
+        <section id='kontakt' className={contactStyles}>
             <div className='container'>
                 <div className={rowStyles}>
                     <div className={colStyles}>

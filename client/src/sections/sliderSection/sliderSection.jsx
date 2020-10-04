@@ -52,7 +52,7 @@ const SliderSection = () => {
     };
 
     return (
-        <section>
+        <section id='galeria'>
             <div className={sliderContainer}>
                 <AnimatePresence initial={false} custom={direction}>
                     <motion.div

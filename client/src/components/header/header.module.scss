@@ -24,7 +24,11 @@
             li {
                 margin-left: 5rem;
 
-                a {
+                button {
+                    cursor: pointer;
+                    outline: none;
+                    border: none;
+                    background-color: transparent;
                     text-decoration: none;
                     font-size: 2.2rem;
                     color: var(--menu-link);

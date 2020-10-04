@@ -3,9 +3,8 @@ import React from 'react'
 import { partnersStyles, containerStyles, illuStyles } from './partnersSection.module.scss'
 
 const PartnersSection = ({ data }) => {
-    console.log(data)
     return (
-        <section className={partnersStyles}>
+        <section id='o-nas' className={partnersStyles}>
             <div className='container'>
                 <h1>{data.heading}</h1>
                 <div className={illuStyles} />

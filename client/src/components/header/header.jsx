@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import scrollTo from 'gatsby-plugin-smoothscroll';
 import { useMenuItems } from '../../hooks/useMenuItems'
 
 import HamMenu from '../hamMenu/hamMenu'
@@ -22,14 +23,14 @@ const Header = () => {
             <ul>
               {navLinks.map(({ name, slug }, idx) => (
                 <li key={idx}>
-                  <a href={slug}>{name}</a>
+                  <button onClick={() => scrollTo(slug)}>{name}</button>
                 </li>
               ))}
             </ul>
           </nav>
         </div>
       </header>
-      {showDrawer && <MenuDrawer menuItems={navLinks} />}
+      {showDrawer && <MenuDrawer menuItems={navLinks} setShowDrawer={setShowDrawer} />}
     </React.Fragment>
   )
 }

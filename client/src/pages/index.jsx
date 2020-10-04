@@ -13,7 +13,6 @@ import ContactSection from '../sections/contactSection/contactSection'
 import MapSection from '../sections/mapSection/mapSection'
 
 const IndexPage = ({ data }) => {
-
   return (
     <Layout>
       <SEO title="Domov" />
@@ -54,9 +53,15 @@ export const query = graphql`
           name
         }
       }
+      header {
+        nav {
+          slug
+        }
+      }
     }
   }
 }
+
 
 `
 export default IndexPage
