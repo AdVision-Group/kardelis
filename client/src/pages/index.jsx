@@ -8,6 +8,7 @@ import SEO from "../components/seo"
 import HeroSection from '../sections/heroSection/heroSection'
 import ServicesSection from '../sections/servicesSection/servicesSection'
 import PartnersSection from '../sections/partnersSection/partnersSection'
+import SliderSection from '../sections/sliderSection/sliderSection'
 import ContactSection from '../sections/contactSection/contactSection'
 import MapSection from '../sections/mapSection/mapSection'
 
@@ -20,6 +21,7 @@ const IndexPage = ({ data }) => {
       <HeroSection data={data.site.siteMetadata.heroSection} />
       <ServicesSection data={data.site.siteMetadata.services} />
       <PartnersSection data={data.site.siteMetadata.partners} />
+      <SliderSection />
       <ContactSection data={data.site.siteMetadata.contactSection} />
       <MapSection />
 

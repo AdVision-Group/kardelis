@@ -1,0 +1,113 @@
+[33mcommit d46beead7c4e43956a962211936bc5424be2aa3e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Darken141 <darken141@gmail.com>
+Date:   Sun Oct 4 01:38:54 2020 +0200
+
+    install gh-pages
+
+[33mcommit 2fe2bfcca77d0ee3acb320c33129c1e8b718efd0[m
+Author: Darken141 <darken141@gmail.com>
+Date:   Sun Oct 4 01:33:41 2020 +0200
+
+    prototype footer
+
+[33mcommit 03455755951da0202376c8a393217090287d2aa3[m
+Author: Darken141 <darken141@gmail.com>
+Date:   Sun Oct 4 01:00:30 2020 +0200
+
+    fix drawer, prototype map section
+
+[33mcommit 5aa84e3b50d923045b7278b967856925a8cc2387[m
+Author: Darken141 <darken141@gmail.com>
+Date:   Sun Oct 4 00:37:28 2020 +0200
+
+    prototype contact section
+
+[33mcommit 4a0b11b76f33d0abde7956c34f05dd7c04c50d16[m
+Author: Darken141 <darken141@gmail.com>
+Date:   Sat Oct 3 23:36:02 2020 +0200
+
+    prototype partners section
+
+[33mcommit c4ad9b9080a16a5b1948963d9dc5e03c4ff5320e[m
+Author: Darken141 <darken141@gmail.com>
+Date:   Sat Oct 3 23:25:34 2020 +0200
+
+    prototype services section
+
+[33mcommit db0a125a0395b6b101992fd4a94ce1baee72aa12[m
+Author: Darken141 <darken141@gmail.com>
+Date:   Sat Oct 3 22:24:39 2020 +0200
+
+    prototype hero section"
+
+[33mcommit c468371ee0649b33935c04b343e622d9887c3113[m
+Author: Darken141 <darken141@gmail.com>
+Date:   Sat Oct 3 21:20:22 2020 +0200
+
+    fix warning message about clickable elements
+
+[33mcommit 79b465e2d246cb58f0a694d29d59409db35edb99[m
+Author: Darken141 <darken141@gmail.com>
+Date:   Sat Oct 3 21:06:24 2020 +0200
+
+    style header components
+
+[33mcommit 36059360f1a747ee0695880616931b2dcc7d7a06[m
+Author: Darken141 <darken141@gmail.com>
+Date:   Sat Oct 3 17:22:04 2020 +0200
+
+    create useMenuItems hook
+
+[33mcommit 251113dc5e1ff428d1dc5235e12708640357018d[m
+Author: Darken141 <darken141@gmail.com>
+Date:   Sat Oct 3 16:35:52 2020 +0200
+
+    installing dependencies
+
+[33mcommit 228b050818c2ee5b141ff5f2c5b1233a97b5f9f8[m
+Author: Darken141 <darken141@gmail.com>
+Date:   Sat Oct 3 16:05:30 2020 +0200
+
+    set-up workspace folders and files
+
+[33mcommit 28a1a2c3c7d45a5e56632aa03fc43d11f7ec907d[m
+Author: Darken141 <darken141@gmail.com>
+Date:   Sat Oct 3 15:43:46 2020 +0200
+
+    delete unnecessary code"
+
+[33mcommit a323e3abceb3823d30eafce992440dcc1405edf2[m
+Author: Darken141 <darken141@gmail.com>
+Date:   Sat Oct 3 15:25:35 2020 +0200
+
+    initial commit, set-up gatsby-config file
+
+[33mcommit a982a887138d54f301d4212a89b60531f824c7a9[m
+Author: Darken141 <darken141@gmail.com>
+Date:   Sat Oct 3 15:25:11 2020 +0200
+
+    initial commit, set-up gatsby-config file
+
+[33mcommit cebbaefa0c4582a2036b2a1d35e388bb2e77d8b3[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Tomáš Boďa <58137476+TomasBoda@users.noreply.github.com>
+Date:   Fri Oct 2 16:12:24 2020 +0200
+
+    Add files via upload
+
+[33mcommit df3c0687bbfbe9705cddedf1482a629dbc04e2d8[m
+Author: Tomáš Boďa <58137476+TomasBoda@users.noreply.github.com>
+Date:   Fri Oct 2 16:10:41 2020 +0200
+
+    Update README.md
+
+[33mcommit c30018a423efadd32752418f44c427c5034e2c19[m
+Author: Tomáš Boďa <58137476+TomasBoda@users.noreply.github.com>
+Date:   Fri Oct 2 16:10:22 2020 +0200
+
+    Update README.md
+
+[33mcommit 2876e5c466de2b7329d0dac99595ac2ebe65b555[m
+Author: Tomáš Boďa <58137476+TomasBoda@users.noreply.github.com>
+Date:   Fri Oct 2 16:08:26 2020 +0200
+
+    Initial commit
