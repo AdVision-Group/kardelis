@@ -27,11 +27,11 @@
                 a {
                     text-decoration: none;
                     font-size: 2.2rem;
-                    color: #000;
+                    color: var(--menu-link);
                     transition: all .2s ease-in-out;
 
                     &:hover {
-                        color: lighten(#000,50);
+                        color: var(--menu-link-hover);
                     }
                 }
             }

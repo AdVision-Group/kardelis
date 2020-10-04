@@ -1,10 +1,8 @@
 .services-styles {
-
-    
-    
+  
     .container-styles {
         padding: 10rem 0;
-        background-color: #f2eee9;
+        background-color: var(--first-service);
 
         .illu-styles {
             width: 45%;
@@ -25,7 +23,7 @@
 
                 .outline-styles {
                     position: absolute;
-                    border: 10px solid #fff;
+                    border: var(--img-offset-border);
                     top: 2rem;
                     left: 2rem;
                     width: 100%;
@@ -45,7 +43,7 @@
 
         &:last-child {
             text-align: right;
-            background-color: #e7e2dc;
+            background-color: var(--second-service);
 
             .illu-styles {
                 margin-top: 10rem;

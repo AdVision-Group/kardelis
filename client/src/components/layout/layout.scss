@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+@import url('../../styles/_variables.scss');
+
 
 *, *::before, *::after {
   margin: 0;
@@ -13,6 +15,7 @@ html {
 body {
   font-size: 1.6rem;
   font-family: 'Roboto', sans-serif;
+  color: var(--font-primary);
   background-color: #efefef;
   line-height: 1.5;
 }

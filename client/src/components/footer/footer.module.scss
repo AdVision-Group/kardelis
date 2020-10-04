@@ -1,7 +1,7 @@
 .footer-styles {
     padding: 5rem 0;
-    background-color: #504743ff;
-    color: #fff;
+    background-color: var(--footer-background);
+    color: var(--footer-font);
 }
 
 .row-styles {
@@ -22,7 +22,7 @@
 
                 a {
                     text-decoration: none;
-                    color: #fff;
+                    color: var(--footer-link);
                 }
             }
         }

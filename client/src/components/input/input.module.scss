@@ -1,15 +1,13 @@
-$sub-color: #f9f7f5ff;
-$main-color: #baafabff;
 
 @mixin shrinkLabel {
     left: 5px;
   top: -15px;
   font-size: 12px;
-  color: #000;
+  color: var(--font-primary);
 }
 
 @mixin labelStyles {
-    color: #baafabff;
+    color: var(--font-primary);
     font-size: 16px;
     font-weight: normal;
     position: absolute;
@@ -26,15 +24,15 @@ $main-color: #baafabff;
 
   .input-styles {
     background: none;
-    background-color: #f9f7f5ff;
-    color: #000;
+    background-color: var(--first-service);
+    color: var(--font-primary);
     font-size: 18px;
     padding: 10px 10px 10px 10px;
     display: block;
     width: 80%;
     border: none;
     border-radius: 0;
-    border-bottom: 1px solid $sub-color;
+    border-bottom: var(--input-border-bottom);
     margin: 25px 0;
 
     &:focus {
