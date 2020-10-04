@@ -39,10 +39,27 @@
                     margin-left: 6rem;
                 }
             }
+
+            @media all and (max-width: 768px) {
+                flex-direction: column-reverse;
+                text-align: center;
+
+                .col-styles {
+                    width: 80%;
+                    padding: 0 1rem;
+
+                    &:last-child {
+                        width: 100%;
+
+                        margin-bottom: 5rem;
+                        margin-left: 0;
+                    }
+                }
+
+            }
         }
 
         &:last-child {
-            text-align: right;
             background-color: var(--second-service);
 
             .illu-styles {
@@ -54,6 +71,8 @@
                 display: flex;
                 flex-direction: row-reverse;
                 padding-right: 2rem;
+                text-align: right;
+
 
                 .col-styles {
                     &:last-child {
@@ -61,7 +80,17 @@
                         margin-right: 6rem;
                     }
                 }
+                @media all and (max-width: 768px) {
+                    flex-direction: column-reverse;
+                    text-align: center;
+    
+                    .col-styles:last-child {
+                        margin-bottom: 5rem;
+                        margin-right: 0;
+                    }
+                }
             }
+
         }
     }
 }
