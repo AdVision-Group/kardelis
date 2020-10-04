@@ -20,7 +20,7 @@ const IndexPage = ({ data }) => {
 
       <HeroSection data={data.site.siteMetadata.heroSection} />
       <ServicesSection data={data.site.siteMetadata.services} />
-      <PartnersSection data={data.site.siteMetadata.partners} />
+      <PartnersSection data={data.site.siteMetadata.partnersSection} />
       <SliderSection />
       <ContactSection data={data.site.siteMetadata.contactSection} />
       <MapSection />
@@ -30,29 +30,33 @@ const IndexPage = ({ data }) => {
 }
 
 export const query = graphql`
-  {
-    site {
-      siteMetadata {
-        heroSection {
-          heading
-          social {
-            link
-            name
-          }
-        }
-        services {
-          heading
-          content
-        }
-        partners {
-          name
+{
+  site {
+    siteMetadata {
+      heroSection {
+        heading
+        social {
           link
+          name
         }
-        contactSection {
-          heading
+      }
+      services {
+        heading
+        content
+      }
+      contactSection {
+        heading
+      }
+      partnersSection {
+        heading
+        partners {
+          link
+          name
         }
       }
     }
   }
+}
+
 `
 export default IndexPage

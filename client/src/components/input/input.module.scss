@@ -35,6 +35,8 @@
     border-bottom: var(--input-border-bottom);
     margin: 25px 0;
 
+
+
     &:focus {
       outline: none;
     }
@@ -55,5 +57,13 @@
     .shrink-label-Styles {
         @include labelStyles();
         @include shrinkLabel();
+    }
+
+    @media all and (max-width: 768px) {
+      width: 100%;
+
+      .input-styles {
+        width: 100%;
+      }
     }
 }

@@ -1,17 +1,24 @@
 import React from 'react'
 
-import { partnersStyles } from './partnersSection.module.scss'
+import { partnersStyles, containerStyles, illuStyles } from './partnersSection.module.scss'
 
 const PartnersSection = ({ data }) => {
+    console.log(data)
     return (
         <section className={partnersStyles}>
-            {data.map(({ link, name }, idx) => {
-                return (
-                    <div key={idx}>
-                        <a href={link}>{name}</a>
-                    </div>
-                )
-            })}
+            <div className='container'>
+                <h1>{data.heading}</h1>
+                <div className={illuStyles} />
+                <div className={containerStyles}>
+                    {data.partners.map(({ link, name }, idx) => {
+                        return (
+                            <div key={idx}>
+                                <a href={link}>{name}</a>
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
         </section>
     )
 }

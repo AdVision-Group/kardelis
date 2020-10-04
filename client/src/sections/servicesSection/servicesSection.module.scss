@@ -1,7 +1,7 @@
 .services-styles {
   
     .container-styles {
-        padding: 10rem 0;
+        padding: 8rem 0;
         background-color: var(--first-service);
 
         .illu-styles {
@@ -9,7 +9,7 @@
             height: 8rem;
             background-color: #888;
             margin: 0 auto;
-            margin-bottom: 10rem;
+            margin-bottom: 8rem;
         }
         
         .row-styles {
@@ -46,7 +46,7 @@
 
                 .col-styles {
                     width: 80%;
-                    padding: 0 1rem;
+                    padding: 0 3rem;
 
                     &:last-child {
                         width: 100%;
@@ -56,6 +56,11 @@
                     }
                 }
 
+                @media all and (max-width: 480px){
+                    .col-styles {
+                        padding: 0 1rem;
+                    }
+                }
             }
         }
 
@@ -63,7 +68,7 @@
             background-color: var(--second-service);
 
             .illu-styles {
-                margin-top: 10rem;
+                margin-top: 8rem;
                 margin-bottom: 0;
             }
 
@@ -83,6 +88,7 @@
                 @media all and (max-width: 768px) {
                     flex-direction: column-reverse;
                     text-align: center;
+                    padding-right: 0;
     
                     .col-styles:last-child {
                         margin-bottom: 5rem;

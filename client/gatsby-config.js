@@ -54,20 +54,23 @@ module.exports = {
       }
     ],
 
-    partners: [
-      {
-        name: "alissa beauté",
-        link: "www.google.com"
-      },
-      {
-        name: "essente | inspirace",
-        link: "www.google.com"
-      },
-      {
-        name: "ORLY",
-        link: "www.google.com"
-      }
-    ],
+    partnersSection: {
+      heading: "Partneri, s ktorými spolupracujeme",
+      partners: [
+        {
+          name: "alissa beauté",
+          link: "www.google.com"
+        },
+        {
+          name: "essente | inspirace",
+          link: "www.google.com"
+        },
+        {
+          name: "ORLY",
+          link: "www.google.com"
+        }
+      ]
+    },
 
     sliderShowImages: [
       {

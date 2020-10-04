@@ -94,7 +94,6 @@ const SliderSection = () => {
 
                 <div className={pageBulletsStyles}>
                     {sliderImages.map((img, idx) => {
-                        console.log(idx)
                         return (
                             <button className={idx === imageIndex ? activeStyles : " "} key={idx} onClick={() => setPage([idx, idx])}>
                                 {" "}
