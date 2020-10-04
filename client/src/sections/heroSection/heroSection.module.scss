@@ -24,6 +24,14 @@
     display: flex;
 
     div {
-        padding: 0 1rem;
+        padding: 0 2rem;
+        font-size: 5rem;
+        
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--menu-link);
+        }
     }
 }

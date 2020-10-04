@@ -1,3 +1,33 @@
+@mixin sliderButton {
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    background: rgba(#fff, .6);
+    border-radius: 30px;
+    width: 6rem;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    z-index: 2;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+
+    svg {
+        font-size: 3rem;
+        color: #fff;
+    }
+
+    &:hover {
+        opacity: .83;
+    }
+}
+
 .slider-container {
     position: relative;
     height: 80vh;
@@ -13,41 +43,14 @@
 }
 
 .next-styles {
-  top: 50%;
-  transform: translateY(-50%);
-  position: absolute;
-  background: white;
-  border-radius: 30px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 18px;
-  z-index: 2;
-  right: 0;
+    @include sliderButton();
+    right: 3rem;
 
 }
 
 .prev-styles {
-  top: 50%;
-  transform: translateY(-50%);
-  position: absolute;
-  background: white;
-  border-radius: 30px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 18px;
-  z-index: 2;
+    @include sliderButton();
+    left: 3rem;
 }
 
 .img-styles {
@@ -73,18 +76,24 @@
     z-index:  999;
 
     button {
+        cursor: pointer;
         background-color: #FFF;
         border: 5px solid #fff;
         padding: 1rem;
         margin: 1rem;
         border-radius: 50%;
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1rem;
+        height: 1rem;
         outline: none;
         opacity: 0.83;
+        transition: all .2s ease-in-out;
 
         &.active-styles {
             background-color: transparent;
+        }
+
+        &:hover {
+            opacity: .6;
         }
     }
 }

@@ -4,6 +4,8 @@ import Image from 'gatsby-image'
 import { wrap } from '@popmotion/popcorn'
 import { AnimatePresence, motion } from 'framer-motion'
 
+import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
+
 import { sliderContainer, imageContainer, nextStyles, prevStyles, imgStyles, pageBulletsStyles, activeStyles } from './sliderSection.module.scss'
 
 const SliderSection = () => {
@@ -86,10 +88,10 @@ const SliderSection = () => {
 
                 </AnimatePresence>
                 <button className={nextStyles} onClick={() => paginate(1)}>
-                    {"+"}
+                    <BsArrowRight />
                 </button>
                 <button className={prevStyles} onClick={() => paginate(-1)}>
-                    {"-"}
+                    <BsArrowLeft />
                 </button>
 
                 <div className={pageBulletsStyles}>
