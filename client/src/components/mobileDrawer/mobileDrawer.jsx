@@ -1,16 +1,16 @@
 import React from 'react'
 import scrollTo from 'gatsby-plugin-smoothscroll';
 
-import { drawerStyles } from './mobileDrawer.module.scss'
+import { openDrawerStyles, closeDrawerStyles } from './mobileDrawer.module.scss'
 
-const MobileDrawer = ({ menuItems = [], setShowDrawer }) => {
+const MobileDrawer = ({ menuItems = [], setShowDrawer, showDrawer }) => {
     const handleClick = (slug) => {
         setShowDrawer(false)
         scrollTo(slug)
     }
 
     return (
-        <div className={drawerStyles}>
+        <div className={showDrawer ? openDrawerStyles : closeDrawerStyles}>
             <ul>
                 {menuItems.map(({ name, slug }, idx) => (
                     <li key={idx}>

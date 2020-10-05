@@ -35,7 +35,7 @@ const Header = () => {
           </nav>
         </div>
       </header>
-      {showDrawer && <MenuDrawer menuItems={navLinks} setShowDrawer={setShowDrawer} />}
+      <MenuDrawer menuItems={navLinks} setShowDrawer={setShowDrawer} showDrawer={showDrawer} />
     </React.Fragment>
   )
 }

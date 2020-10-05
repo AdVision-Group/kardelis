@@ -1,4 +1,4 @@
-.drawer-styles {
+@mixin drawerStyles {
     display: none;
 
     @media all and (max-width: 768px) {
@@ -8,10 +8,8 @@
         background-color: #fff;
         box-shadow: 0px 1rem 1.5rem 0px rgba(0,0,0,0.05);
         padding: 2rem;
-        animation: slideIn 0.7s ease-in-out;
-        opacity: 1;
-        top: 8rem;
         z-index: 99999;
+        transition: all .5s ease-in-out;
     
         ul {
             list-style: none;
@@ -40,13 +38,36 @@
     }
 }
 
-@keyframes slideIn {
-    0% {
-        opacity: 0;
-        top: -8rem;
-    }
-    100% {
-        opacity: 1;
-        top: 8rem;
-    }
+.open-drawer-styles {
+    @include drawerStyles();
+    opacity: 1;
+    top: 8rem;
 }
+
+.close-drawer-styles {
+    @include drawerStyles();
+    opacity: 0;
+    top: -8rem;
+}
+
+// @keyframes slideIn {
+//     0% {
+//         opacity: 0;
+//         top: -8rem;
+//     }
+//     100% {
+//         opacity: 1;
+//         top: 8rem;
+//     }
+// }
+
+// @keyframes slideIn {
+//     0% {
+//         opacity: 1;
+//         top: 8rem;
+//     }
+//     100% {
+//         opacity: 0;
+//         top: -8rem;
+//     }
+// }
