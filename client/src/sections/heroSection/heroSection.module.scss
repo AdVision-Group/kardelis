@@ -14,8 +14,8 @@
 }
 
 .logo-styles {
-    width: 30rem;
-    height: 30rem;
+    width: 25rem;
+    height: 25rem;
     background-color: #888;
     margin: 0 auto 5rem;
 }
@@ -26,12 +26,18 @@
     div {
         padding: 0 2rem;
         font-size: 5rem;
+        margin-bottom: 8rem;
         
         a {
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--menu-link);
+            transition: all .2s ease-in-out;
+
+            &:hover {
+                color: var(--menu-link-hover);
+            }
         }
     }
 }
