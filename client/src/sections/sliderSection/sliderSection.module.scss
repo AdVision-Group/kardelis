@@ -1,17 +1,18 @@
 .slider-styles {
-    height: 65vh;
-
+    // height: 65vh;
+    overflow: hidden;
 }
 
 .gallery-styles {
-    height: 100%;
-    overflow: hidden;
+    // height: 100%;
+    // height: 65vh;
+    max-height: 75vh;
     background-color: var(--first-service);
 
     ol {
         li {
-            width: 2rem;
-            height: 2rem;
+            width: 1.5rem;
+            height: 1.5rem;
             border-radius: 50%;
             border: 4px solid #fff;
             background-color: #fff;
