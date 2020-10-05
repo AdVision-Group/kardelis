@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Image from 'gatsby-image'
-import { wrap } from '@popmotion/popcorn'
-import { AnimatePresence, motion } from 'framer-motion'
+import { Carousel, CarouselItem, CarouselIndicators, CarouselControl } from 'reactstrap'
 
-import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
-
-import { sliderContainer, imageContainer, nextStyles, prevStyles, imgStyles, pageBulletsStyles, activeStyles } from './sliderSection.module.scss'
+import { sliderStyles, galleryStyles, controlsStyles } from './sliderSection.module.scss'
 
 const SliderSection = () => {
     const data = useStaticQuery(graphql`
@@ -22,89 +19,61 @@ const SliderSection = () => {
       }
     }
   `)
-    const sliderImages = data.allFile.nodes
-
-    const variants = {
-        enter: (direction) => {
-            return {
-                x: direction > 0 ? 1000 : -1000,
-                opacity: 0
-            };
-        },
-        center: {
-            zIndex: 1,
-            x: 0,
-            opacity: 1
-        },
-        exit: (direction) => {
-            return {
-                zIndex: 0,
-                x: direction < 0 ? 1000 : -1000,
-                opacity: 0
-            };
+    const items = data.allFile.nodes.map((img, idx) => {
+        return {
+            key: idx,
+            ...img
         }
-    };
+    })
 
-    const [[page, direction], setPage] = useState([0, 0])
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [animating, setAnimating] = useState(false);
 
-    const imageIndex = wrap(0, sliderImages.length, page);
+    const next = () => {
+        if (animating) return;
+        const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+        setActiveIndex(nextIndex);
+    }
 
-    const paginate = (newDirection) => {
-        setPage([page + newDirection, newDirection]);
-    };
+    const previous = () => {
+        if (animating) return;
+        const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+        setActiveIndex(nextIndex);
+    }
+
+    const goToIndex = (newIndex) => {
+        if (animating) return;
+        setActiveIndex(newIndex);
+    }
+
 
     return (
-        <section id='galeria'>
-            <div className={sliderContainer}>
-                <AnimatePresence initial={false} custom={direction}>
-                    <motion.div
-                        className={imageContainer}
-                        variants={variants}
-                        initial="enter"
-                        animate="center"
-                        exit='exit'
-                        transition={{
-                            x: { type: "spring", stiffness: 300, damping: 200 },
-                            opacity: { duration: 0.2 }
-                        }}
-                        drag="x"
-                        dragConstraints={{ left: 0, right: 0 }}
-                        dragElastic={1}
-                        onDragEnd={(e, { offset, velocity }) => {
-                            const swipe = swipePower(offset.x, velocity.x);
-
-                            if (swipe < -swipeConfidenceThreshold) {
-                                paginate(1);
-                            } else if (swipe > swipeConfidenceThreshold) {
-                                paginate(-1);
-                            }
-                        }}
-                    >
-                        <Image
-                            className={imgStyles}
-                            fluid={sliderImages[imageIndex].childImageSharp.fluid}
-                        />
-                    </motion.div>
-
-                </AnimatePresence>
-                <button className={nextStyles} onClick={() => paginate(1)}>
-                    <BsArrowRight />
-                </button>
-                <button className={prevStyles} onClick={() => paginate(-1)}>
-                    <BsArrowLeft />
-                </button>
-
-                <div className={pageBulletsStyles}>
-                    {sliderImages.map((img, idx) => {
-                        return (
-                            <button className={idx === imageIndex ? activeStyles : " "} key={idx} onClick={() => setPage([idx, idx])}>
-                                {" "}
-                            </button>
-                        )
-                    })}
-                </div>
-            </div>
+        <section id='galeria' className={sliderStyles}>
+            <Carousel
+                id='galeria'
+                activeIndex={activeIndex}
+                next={next}
+                previous={previous}
+                className={galleryStyles}
+            >
+                <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
+                {items.map((item, idx) => {
+                    return (
+                        <CarouselItem
+                            onExiting={() => setAnimating(true)}
+                            onExited={() => setAnimating(false)}
+                            key={idx}
+                        >
+                            <Image key={idx} fluid={item.childImageSharp.fluid} />
+                            {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
+                        </CarouselItem>
+                    );
+                })}
+                <CarouselControl className={controlsStyles} direction="prev" directionText="Previous" onClickHandler={previous} />
+                <CarouselControl className={controlsStyles} direction="next" directionText="Next" onClickHandler={next} />
+            </Carousel>
         </section>
+
     )
 }
 

@@ -10,6 +10,8 @@ import PropTypes from "prop-types"
 
 import Header from "../header/header"
 import Footer from '../footer/footer'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./layout.scss"
 
 const Layout = ({ children }) => {

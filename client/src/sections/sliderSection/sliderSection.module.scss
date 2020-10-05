@@ -1,99 +1,49 @@
-@mixin sliderButton {
-    top: 50%;
-    transform: translateY(-50%);
-    position: absolute;
-    background: rgba(#fff, .6);
-    border-radius: 30px;
-    width: 6rem;
-    height: 6rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 18px;
-    z-index: 2;
-    border: none;
-    outline: none;
-    transition: all 0.3s ease-in-out;
-
-    svg {
-        font-size: 3rem;
-        color: #fff;
-    }
-
-    &:hover {
-        opacity: .83;
-    }
-}
-
-.slider-container {
-    position: relative;
-    height: 80vh;
-    overflow: hidden;
-}
-
-.image-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    bottom: 0;
-}
-
-.next-styles {
-    @include sliderButton();
-    right: 3rem;
+.slider-styles {
+    height: 65vh;
 
 }
 
-.prev-styles {
-    @include sliderButton();
-    left: 3rem;
-}
-
-.img-styles {
+.gallery-styles {
     height: 100%;
-    animation: fadeIn 0.6s ease-in-out;
-}
+    overflow: hidden;
+    background-color: var(--first-service);
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-.page-bullets-styles {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index:  999;
-
-    button {
-        cursor: pointer;
-        background-color: #FFF;
-        border: 5px solid #fff;
-        // padding: 1rem;
-        margin: 2rem 1.5rem;
-        border-radius: 50%;
-        width: 2rem;
-        height: 2rem;
-        outline: none;
-        opacity: 0.83;
-        transition: all .2s ease-in-out;
-
-        &.active-styles {
-            background-color: transparent;
+    ol {
+        li {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            background-color: #fff;
+            margin: 0 1rem;
         }
+    }
 
-        &:hover {
-            opacity: .6;
+}
+
+.controls-styles {
+    // background-color: #fff;
+
+    span {
+        display: block;
+        width: 4rem;
+        height: 4rem;
+        // padding: 5rem;
+        font-size: 1rem;
+        background-image: url("./arrows/left.svg");
+        background-color: rgba(#fff,.5);
+        border-radius: 50%;
+        
+        .svg {
+            color: #fff;
+
+        }
+    }
+
+    &:last-child {
+        span {
+            background-image: url("./arrows/right.svg");
+
         }
     }
 }
