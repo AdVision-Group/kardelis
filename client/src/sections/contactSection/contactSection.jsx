@@ -17,7 +17,11 @@ const ConstactSection = ({ data }) => {
             <div className='container'>
                 <div className={rowStyles}>
                     <div className={colStyles}>
-                        <h2>{heading}</h2>
+                        <h2
+                            data-sal="fade"
+                            data-sal-duration="1500"
+                            data-sal-easing="ease"
+                        >{heading}</h2>
                         <div className={illuStyles} />
                     </div>
                     <div className={colStyles}>

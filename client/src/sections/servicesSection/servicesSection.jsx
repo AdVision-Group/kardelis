@@ -26,7 +26,12 @@ const ServicesSection = ({ data }) => {
           <div className={containerStyles} key={idx}>
             <div className='container'>
               {idx === 0 && <div className={illuStyles} />}
-              <div className={rowStyles}>
+              <div
+                className={rowStyles}
+                data-sal="slide-up"
+                data-sal-duration="1500"
+                data-sal-easing="ease"
+              >
                 <div className={colStyles}>
                   <Image fluid={query.allFile.nodes[idx].childImageSharp.fluid} />
                   <div className={outlineStyles} />

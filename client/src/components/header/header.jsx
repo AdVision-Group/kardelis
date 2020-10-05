@@ -13,7 +13,12 @@ const Header = () => {
 
   return (
     <React.Fragment>
-      <header className={headerStyles}>
+      <header
+        className={headerStyles}
+        data-sal="slide-down"
+        data-sal-duration="1500"
+        data-sal-easing="ease"
+      >
         <div className={headerContainerStyles}>
           <div>
             <h1>Logo</h1>

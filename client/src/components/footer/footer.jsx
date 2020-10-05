@@ -41,7 +41,14 @@ const Footer = () => {
                     </div>
                     {cols.map((col, idx) => {
                         return (
-                            <div className={colStyles} key={idx}>
+                            <div
+                                className={colStyles}
+                                key={idx}
+                                data-sal="fade"
+                                data-sal-duration="1500"
+                                data-sal-easing="ease"
+                                data-sal-delay={`${idx}00`}
+                            >
                                 <h3>{col.heading}</h3>
                                 {idx === 0 && <ul>
                                     {navLinks.map(({ name, slug }, idx) => (

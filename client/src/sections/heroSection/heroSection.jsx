@@ -31,10 +31,23 @@ const HeroSection = ({ data }) => {
             className={heroStyles}
             fluid={bgImg}
         >
-            <div className={logoStyles} />
+            <div className={logoStyles}
+                data-sal="fade"
+                data-sal-duration="1500"
+                data-sal-easing="ease"
+            />
 
-            <h1>{heading}</h1>
-            <div className={socialStyles}>
+            <h1
+                data-sal="slide-down"
+                data-sal-duration="1500"
+                data-sal-easing="ease"
+            >{heading}</h1>
+            <div
+                className={socialStyles}
+                data-sal="slide-down"
+                data-sal-duration="1500"
+                data-sal-easing="ease"
+            >
                 {social.map(({ name, link }, idx) => {
                     if (name === 'Facebook') {
                         return (
