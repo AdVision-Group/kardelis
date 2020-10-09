@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding: 4rem 0 0 0 ;
 
     h1 {
         max-width: 55rem;
@@ -14,10 +15,17 @@
 }
 
 .logo-styles {
-    width: 25rem;
-    height: 25rem;
-    background-color: #888;
+    width: 45rem;
     margin: 0 auto 5rem;
+
+      @media all and (max-width: 768px) {
+
+    width: 80%;
+
+    @media all and (max-width: 480px) {
+        width: 100%;
+    } 
+  }
 }
 
 .social-styles {

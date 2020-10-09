@@ -1,5 +1,6 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
+import Image from 'gatsby-image'
 
 import BackgroundImage from 'gatsby-background-image'
 
@@ -10,19 +11,27 @@ import { heroStyles, logoStyles, socialStyles } from "./heroSection.module.scss"
 const HeroSection = ({ data }) => {
     const query = useStaticQuery(graphql`
     {
-        allFile(filter: {childImageSharp: {fluid: {originalName: {eq: "bg_img.jpg"}}}}) {
-            nodes {
-                childImageSharp {
-                    fluid {
-                        ...GatsbyImageSharpFluid_withWebp
-                    }
-                }
+    allFile(filter: {childImageSharp: {fluid: {originalName: {eq: "bg_img.jpg"}}}}) {
+        nodes {
+        childImageSharp {
+            fluid {
+            ...GatsbyImageSharpFluid_withWebp
             }
         }
+        }
+    }
+    allImageSharp(filter: {fluid: {originalName: {eq: "logo.png"}}}) {
+        nodes {
+        fluid {
+            ...GatsbyImageSharpFluid_withWebp
+        }
+        }
+    }
     }
     `)
     const { heading, social } = data
     const bgImg = query.allFile.nodes[0].childImageSharp.fluid
+    const logoImg = query.allImageSharp.nodes[0].fluid
 
     return (
         <BackgroundImage
@@ -35,7 +44,9 @@ const HeroSection = ({ data }) => {
                 data-sal="fade"
                 data-sal-duration="1500"
                 data-sal-easing="ease"
-            />
+            >
+                <Image fluid={logoImg} />
+            </div>
 
             <h1
                 data-sal="slide-down"

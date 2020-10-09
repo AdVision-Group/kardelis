@@ -58,14 +58,17 @@ module.exports = {
       heading: "Partneri, s ktorými spolupracujeme",
       partners: [
         {
+          imgName: "logo-elissa-beaute.png",
           name: "alissa beauté",
           link: "www.google.com"
         },
         {
+          imgName: "logo-essente.png",
           name: "essente | inspirace",
           link: "www.google.com"
         },
         {
+          imgName: "logo-orly.png",
           name: "ORLY",
           link: "www.google.com"
         }

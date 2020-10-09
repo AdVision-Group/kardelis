@@ -1,6 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { useMenuItems } from '../../hooks/useMenuItems'
+import Image from 'gatsby-image'
 
 import { footerStyles, rowStyles, colStyles } from './footer.module.scss'
 
@@ -25,6 +26,13 @@ const Footer = () => {
           }
         }
       }
+    allImageSharp(filter: {fluid: {originalName: {eq: "logo.png"}}}) {
+        nodes {
+            fluid {
+                ...GatsbyImageSharpFluid_withWebp
+            }
+        }
+    }
     }
   `)
 
@@ -36,8 +44,8 @@ const Footer = () => {
                 <div className={rowStyles}>
                     <div className={colStyles}>
                         <div>
-                            LOGO
-                       </div>
+                            <Image fluid={data.allImageSharp.nodes[0].fluid} />
+                        </div>
                     </div>
                     {cols.map((col, idx) => {
                         return (

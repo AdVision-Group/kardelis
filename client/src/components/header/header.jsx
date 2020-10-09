@@ -1,13 +1,27 @@
 import React, { useState } from "react"
+import { useStaticQuery, graphql, Link } from 'gatsby'
+import Image from 'gatsby-image'
 import scrollTo from 'gatsby-plugin-smoothscroll';
 import { useMenuItems } from '../../hooks/useMenuItems'
 
 import HamMenu from '../hamMenu/hamMenu'
 import MenuDrawer from '../mobileDrawer/mobileDrawer'
 
-import { headerStyles, headerContainerStyles } from './header.module.scss'
+import { headerStyles, headerContainerStyles, logoStyles } from './header.module.scss'
 
 const Header = () => {
+  const data = useStaticQuery(graphql`{
+  allImageSharp(filter: {fluid: {originalName: {eq: "logo.png"}}}) {
+    nodes {
+      fluid {
+        ...GatsbyImageSharpFluid_withWebp
+      }
+    }
+  }
+}
+
+  `)
+
   const [navLinks] = useMenuItems()
   const [showDrawer, setShowDrawer] = useState(false)
 
@@ -20,8 +34,10 @@ const Header = () => {
         data-sal-easing="ease"
       >
         <div className={headerContainerStyles}>
-          <div>
-            <h1>Logo</h1>
+          <div className={logoStyles}>
+            <Link to="/">
+              <Image fluid={data.allImageSharp.nodes[0].fluid} />
+            </Link>
           </div>
           <HamMenu isOpen={showDrawer} handleClick={() => setShowDrawer(!showDrawer)} />
           <nav>

@@ -13,15 +13,16 @@ import ContactSection from '../sections/contactSection/contactSection'
 import MapSection from '../sections/mapSection/mapSection'
 
 const IndexPage = ({ data }) => {
+
   return (
     <Layout>
       <SEO title="Domov" />
 
       <HeroSection data={data.site.siteMetadata.heroSection} />
-      <ServicesSection data={data.site.siteMetadata.services} />
-      <PartnersSection data={data.site.siteMetadata.partnersSection} />
+      <ServicesSection data={data.site.siteMetadata.services} wave={data.allImageSharp.nodes[0].fluid} />
+      <PartnersSection data={data.site.siteMetadata.partnersSection} wave={data.allImageSharp.nodes[0].fluid} />
       <SliderSection />
-      <ContactSection data={data.site.siteMetadata.contactSection} />
+      <ContactSection data={data.site.siteMetadata.contactSection} wave={data.allImageSharp.nodes[0].fluid} />
       <MapSection />
 
     </Layout>
@@ -51,6 +52,7 @@ export const query = graphql`
         partners {
           link
           name
+          imgName
         }
       }
       header {
@@ -60,7 +62,15 @@ export const query = graphql`
       }
     }
   }
+  allImageSharp(filter: {fluid: {originalName: {eq: "vlnka.png"}}}) {
+    nodes {
+      fluid {
+        ...GatsbyImageSharpFluid_withWebp
+      }
+    }
+  }
 }
+
 
 
 `

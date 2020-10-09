@@ -4,7 +4,7 @@ import Image from 'gatsby-image'
 
 import { servicesStyles, containerStyles, rowStyles, colStyles, illuStyles, outlineStyles } from './servicesSection.module.scss'
 
-const ServicesSection = ({ data }) => {
+const ServicesSection = ({ data, wave }) => {
   const query = useStaticQuery(graphql`
     {
       allFile(filter: {relativeDirectory: {eq: "services"}}) {
@@ -25,7 +25,9 @@ const ServicesSection = ({ data }) => {
         return (
           <div className={containerStyles} key={idx}>
             <div className='container'>
-              {idx === 0 && <div className={illuStyles} />}
+              {idx === 0 && (<div className={illuStyles}>
+                <Image fluid={wave} />
+              </div>)}
               <div
                 className={rowStyles}
                 data-sal="slide-up"
@@ -41,7 +43,9 @@ const ServicesSection = ({ data }) => {
                   <p>{content}</p>
                 </div>
               </div>
-              {idx === 1 && <div className={illuStyles} />}
+              {idx === 1 && (<div className={illuStyles} >
+                <Image fluid={wave} />
+              </div>)}
             </div>
           </div>
         )

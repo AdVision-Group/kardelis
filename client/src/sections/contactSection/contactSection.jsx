@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-
+import Image from 'gatsby-image'
 import CustomInput from '../../components/input/input'
 import CustomTextarea from '../../components/textarea/textarea'
 import CustomButton from '../../components/button/button'
 
 import { contactStyles, rowStyles, illuStyles, colStyles } from './contactSection.module.scss'
 
-const ConstactSection = ({ data }) => {
+const ConstactSection = ({ data, wave }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [message, setMessage] = useState('')
@@ -22,7 +22,9 @@ const ConstactSection = ({ data }) => {
                             data-sal-duration="1500"
                             data-sal-easing="ease"
                         >{heading}</h2>
-                        <div className={illuStyles} />
+                        <div className={illuStyles}>
+                            <Image fluid={wave} />
+                        </div>
                     </div>
                     <div className={colStyles}>
                         <form

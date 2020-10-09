@@ -1,8 +1,32 @@
 import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+import Image from 'gatsby-image'
 
-import { partnersStyles, containerStyles, illuStyles } from './partnersSection.module.scss'
+import { partnersStyles, containerStyles, illuStyles, partnerStyles } from './partnersSection.module.scss'
 
-const PartnersSection = ({ data }) => {
+const PartnersSection = ({ data, wave }) => {
+    const { allFile: { nodes: images } } = useStaticQuery(graphql`
+    {
+      allFile(filter: {relativeDirectory: {eq: "partners"}}) {
+        nodes {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+    }
+  `)
+
+    const partnersData = data.partners.map(partner => {
+        const img = images.find(img => img.childImageSharp.fluid.src.includes(partner.imgName))
+        return {
+            img,
+            ...partner
+        }
+    })
+
     return (
         <section id='o-nas' className={partnersStyles}>
             <div className='container'>
@@ -11,18 +35,24 @@ const PartnersSection = ({ data }) => {
                     data-sal-duration="1500"
                     data-sal-easing="ease"
                 >{data.heading}</h1>
-                <div className={illuStyles} />
+                <div className={illuStyles}>
+                    <Image fluid={wave} />
+                </div>
                 <div className={containerStyles}>
-                    {data.partners.map(({ link, name }, idx) => {
+                    {partnersData.map(({ link, img }, idx) => {
                         return (
                             <div
+                                className={partnerStyles}
                                 key={idx}
                                 data-sal="slide-up"
                                 data-sal-duration="1500"
                                 data-sal-easing="ease"
                                 data-sal-delay={`${idx}00`}
                             >
-                                <a href={link}>{name}</a>
+                                <a href={link}>
+                                    <Image fluid={img.childImageSharp.fluid} />
+                                </a>
+
                             </div>
                         )
                     })}

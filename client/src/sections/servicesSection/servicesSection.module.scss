@@ -5,11 +5,31 @@
         background-color: var(--first-service);
 
         .illu-styles {
-            width: 45%;
-            height: 8rem;
-            background-color: #888;
+            width: 80%;
             margin: 0 auto;
             margin-bottom: 8rem;
+
+            @media all and (max-width: 768px) {
+                margin-bottom: 5rem;
+            }
+    
+
+            @media all and (max-width: 480px) {
+                margin-bottom: 2rem;
+            } 
+
+            &:last-child {
+                transform: scaleY(-1);
+
+                @media all and (max-width: 768px) {
+                    margin-bottom: 5rem;
+                }
+        
+
+                @media all and (max-width: 480px) {
+                    margin-bottom: 2rem;
+                } 
+            }
         }
         
         .row-styles {
@@ -83,6 +103,8 @@
             .illu-styles {
                 margin-top: 8rem;
                 margin-bottom: 0;
+
+            
             }
 
             .row-styles {

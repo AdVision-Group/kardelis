@@ -5,14 +5,14 @@
 
 .row-styles {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
 
     .col-styles {
         width: 50%;
 
         h2 {
             text-align: center;
-            margin-bottom: 3rem;
         }
     }
 
@@ -28,9 +28,8 @@
 }
 
 .illu-styles {
-    width: 45%;
-    height: 8rem;
-    background-color: #888;
+    width: 100%;
     margin: 0 auto;
     margin-bottom: 8rem;
+    transform: scaleY(-1);
 }

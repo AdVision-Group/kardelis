@@ -1,6 +1,13 @@
 @mixin hamStyles {
     cursor: pointer;
     display: none;
+    outline: none;
+
+    &:focus {
+        outline: none;
+
+    }
+
     
     @media all and (max-width: 768px) {
         display: block;
@@ -8,7 +15,6 @@
         border: none;
         width: 3.5rem;
         height: 2.5rem;
-        outline: none;
         position: relative;
     }
 }
