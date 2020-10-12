@@ -5,6 +5,7 @@
 
     @media all and (max-width: 480px) {
         padding: 5rem 1rem;
+        font-size: 2rem;
     }
 }
 
@@ -17,6 +18,8 @@
         min-width: 18rem;
 
         h3 {
+            font-size: 2rem;
+            font-weight: bold;
             margin-bottom: 2rem;
         }
 
@@ -25,12 +28,22 @@
 
             li {
                 margin-bottom: .5rem;
-
+                
                 a {
                     text-decoration: none;
                     color: var(--footer-link);
+                    opacity: .5;
+                    transition: opacity .2s ease-in-out;
+
+                    &:hover {
+                        opacity: .83;
+                    }
                 }
             }
+        }
+
+        address {
+            opacity: .5;
         }
 
         &:first-child {

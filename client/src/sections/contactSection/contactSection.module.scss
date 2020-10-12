@@ -1,4 +1,6 @@
 .contact-styles {
+    scroll-margin-top: 8rem;
+
     padding: 8rem 0;
     background-color: var(--second-service);
 }
@@ -12,6 +14,8 @@
         width: 50%;
 
         h2 {
+            font-weight: bold;
+            font-size: 3rem;
             text-align: center;
         }
     }

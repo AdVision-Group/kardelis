@@ -30,11 +30,11 @@ const PartnersSection = ({ data, wave }) => {
     return (
         <section id='o-nas' className={partnersStyles}>
             <div className='container'>
-                <h1
+                <h2
                     data-sal="fade"
                     data-sal-duration="1500"
                     data-sal-easing="ease"
-                >{data.heading}</h1>
+                >{data.heading}</h2>
                 <div className={illuStyles}>
                     <Image fluid={wave} />
                 </div>
