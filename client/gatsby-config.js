@@ -168,6 +168,7 @@ module.exports = {
     }
   },
   plugins: [
+    `gatsby-transformer-ffmpeg`,
     `gatsby-plugin-scroll-reveal`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
