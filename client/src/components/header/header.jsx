@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import Image from 'gatsby-image'
 import scrollTo from 'gatsby-plugin-smoothscroll';
@@ -7,7 +7,7 @@ import { useMenuItems } from '../../hooks/useMenuItems'
 import HamMenu from '../hamMenu/hamMenu'
 import MenuDrawer from '../mobileDrawer/mobileDrawer'
 
-import { headerStyles, headerContainerStyles, logoStyles } from './header.module.scss'
+import { headerStyles, headerStylesActive, headerContainerStyles, logoStyles, logoStylesActive, headerContainerStylesActive } from './header.module.scss'
 
 const Header = () => {
   const data = useStaticQuery(graphql`{
@@ -19,22 +19,40 @@ const Header = () => {
     }
   }
 }
-
   `)
 
   const [navLinks] = useMenuItems()
   const [showDrawer, setShowDrawer] = useState(false)
 
+
+  const [prevScrollpos, setPrevScrollpos] = useState(null)
+  const [showNav, setShowNav] = useState(false)
+
+  useEffect(() => {
+    setPrevScrollpos(window.pageYOffset)
+  }, [])
+
+  useEffect(() => {
+    window.onscroll = () => {
+      let currentScrollPos = window.pageYOffset;
+      if (currentScrollPos > 400) {
+        setShowNav(true)
+      } else {
+        if (currentScrollPos <= 0) return
+        setShowNav(false)
+      }
+      setPrevScrollpos(currentScrollPos)
+    }
+  })
+
+
   return (
     <React.Fragment>
       <header
-        className={headerStyles}
-        data-sal="slide-down"
-        data-sal-duration="1500"
-        data-sal-easing="ease"
+        className={showNav ? headerStylesActive : headerStyles}
       >
-        <div className={headerContainerStyles}>
-          <div className={logoStyles}>
+        <div className={showNav ? headerContainerStylesActive : headerContainerStyles}>
+          <div className={showNav ? logoStylesActive : logoStyles}>
             <Link to="/">
               <Image fluid={data.allImageSharp.nodes[0].fluid} />
             </Link>

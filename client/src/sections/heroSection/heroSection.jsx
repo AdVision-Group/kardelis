@@ -6,7 +6,7 @@ import Image from 'gatsby-image'
 import bgVideo from '../../images/landing-page-video.mp4'
 
 import { FaFacebook, FaInstagram } from 'react-icons/Fa'
-import { heroStyles, logoStyles, socialStyles, bgVideoStyles, bgOverlay, contentStyles } from "./heroSection.module.scss"
+import { heroStyles, logoStyles, socialStyles, bgVideoStyles, bgOverlay, contentStyles, videoContainer } from "./heroSection.module.scss"
 
 const HeroSection = ({ data }) => {
     const query = useStaticQuery(graphql`
@@ -28,22 +28,26 @@ const HeroSection = ({ data }) => {
             id={`domov`}
             className={heroStyles}
         >
-            <video
-                className={bgVideoStyles}
-                // height="100%"
-                width="100%"
+            <div className={videoContainer}>
+                <video
+                    className={bgVideoStyles}
+                    height="100%"
+                    // width="100%"
+                    loop
+                    muted
+                    autoPlay
+                >
+                    <source
+                        src={bgVideo}
+                        type="video/mp4"
+                    />
+                </video>
 
-                loop
-                muted
-                autoPlay
-            >
-                <source
-                    src={bgVideo}
-                    type="video/mp4"
-                />
-            </video>
+            </div>
 
-            <div className={bgOverlay} />
+            <div className={bgOverlay}>
+
+            </div>
 
             <div className={contentStyles}>
 
