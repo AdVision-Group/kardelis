@@ -36,7 +36,11 @@ const ServicesSection = ({ wave }) => {
   return (
     <section id='sluzby' className={servicesStyles}>
       <div className='container'>
-        <div className={headingStyles}>
+        <div className={headingStyles}
+          data-sal="fade"
+          data-sal-duration="1500"
+          data-sal-easing="ease"
+        >
           <h2>Naše služby</h2>
           <div className={illuStyles}>
             <Image fluid={wave} />
@@ -47,8 +51,15 @@ const ServicesSection = ({ wave }) => {
 
           {services.map(({ title }, idx) => {
             return (
-              <div key={idx} className={serviceStyles}>
-                <div className={activeCard === idx ? serviceImgStylesActive : serviceImgStyles} onClick={() => setActiveCard(idx)} />
+              <div key={idx} className={serviceStyles}
+                data-sal="fade"
+                data-sal-duration="1500"
+                data-sal-easing="ease"
+                data-sal-delay={`${idx}00`}
+              >
+                <button className={activeCard === idx ? serviceImgStylesActive : serviceImgStyles} onClick={() => setActiveCard(idx)}>
+                  {" "}
+                </button>
                 <h3>{title}</h3>
               </div>
             )
