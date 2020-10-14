@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Image from 'gatsby-image'
+import scrollTo from 'gatsby-plugin-smoothscroll'
 
 import {
   servicesStyles,
@@ -32,6 +33,10 @@ const ServicesSection = ({ wave }) => {
   ]
 
   const [activeCard, setActiveCard] = useState(1)
+  const handleClick = (idx) => {
+    setActiveCard(idx)
+    scrollTo('#popis-sluzieb')
+  }
 
   return (
     <section id='sluzby' className={servicesStyles}>
@@ -57,7 +62,7 @@ const ServicesSection = ({ wave }) => {
                 data-sal-easing="ease"
                 data-sal-delay={`${idx}00`}
               >
-                <button className={activeCard === idx ? serviceImgStylesActive : serviceImgStyles} onClick={() => setActiveCard(idx)}>
+                <button className={activeCard === idx ? serviceImgStylesActive : serviceImgStyles} onClick={() => handleClick(idx)}>
                   {" "}
                 </button>
                 <h3>{title}</h3>
@@ -66,7 +71,7 @@ const ServicesSection = ({ wave }) => {
           })}
         </div>
 
-        <div className={descriptionStyles}>
+        <div id="popis-sluzieb" className={descriptionStyles}>
           {services.map(({ desc }, idx) => {
             return (
               <p key={idx} className={activeCard === idx ? descStylesActive : descStyles}>

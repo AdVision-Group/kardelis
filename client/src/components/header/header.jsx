@@ -35,7 +35,7 @@ const Header = () => {
   useEffect(() => {
     window.onscroll = () => {
       let currentScrollPos = window.pageYOffset;
-      if (currentScrollPos > 400) {
+      if (currentScrollPos > 70) {
         setShowNav(true)
       } else {
         if (currentScrollPos <= 0) return
