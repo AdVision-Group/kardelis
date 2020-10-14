@@ -48,6 +48,8 @@
                     font-size: 1.8rem;
                     color: var(--menu-link);
                     transition: all .2s ease-in-out;
+                    font-family: inherit;
+                    font-weight: 400;
 
                     &:hover {
                         color: var(--menu-link-hover);
@@ -82,11 +84,16 @@
 }
 
 .logo-styles {
+    // opacity: 0;
     width: 12rem;
-    transition: all .3s ease-in-out;
+    // visibility: hidden;
+    transition: all .5s ease-in-out;
 
     &-active {
+        opacity: 1;
+        visibility: visible;
         width: 8rem;
+        transition: all .5s ease-in-out;
         
     }
 }
