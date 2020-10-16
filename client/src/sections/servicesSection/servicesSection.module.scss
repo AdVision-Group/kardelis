@@ -65,10 +65,10 @@
     overflow: hidden;
     
     img {
-        position: absolute;
-        top: 70%;
-        object-fit: contain !important;
-        height: 75% !important;
+        // position: absolute;
+        // top: 70%;
+        // object-fit: contain !important;
+        transform: scale(0.90);
     }
 
     &:focus {
@@ -90,7 +90,7 @@
         @include serviceImgStyles();
         border: 5px solid #fff;
         transition: all 0.3s ease-in-out;
-        opacity: .4;
+        opacity: .3;
 
         
         &-active {
