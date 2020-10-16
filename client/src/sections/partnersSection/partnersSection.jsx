@@ -28,7 +28,7 @@ const PartnersSection = ({ data, wave }) => {
     })
 
     return (
-        <section id='o-nas' className={partnersStyles}>
+        <section id='partneri' className={partnersStyles}>
             <div className='container'
                 data-sal="fade"
                 data-sal-duration="1500"

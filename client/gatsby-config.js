@@ -15,13 +15,14 @@ module.exports = {
           slug: "#domov"
         },
         {
-          name: "O nás",
-          slug: "#o-nas"
-        },
-        {
           name: "Služby",
           slug: "#sluzby"
         },
+        {
+          name: "Partneri",
+          slug: "#partneri"
+        },
+
         {
           name: "Galéria",
           slug: "#galeria"
@@ -34,7 +35,7 @@ module.exports = {
     },
 
     heroSection: {
-      heading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet nulla facilisi morbi tempus. Elit ut aliquam purus sit amet luctus venenatis.",
+      heading: "Krása sa skladá z maličkostí",
       social: [
         {
           name: "Facebook",

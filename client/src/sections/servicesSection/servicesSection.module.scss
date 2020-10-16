@@ -55,20 +55,29 @@
 @mixin serviceImgStyles {
     cursor: pointer;
     display: block;
-    width: 15rem;
-    height: 15rem;
+    width: 12rem;
+    height: 12rem;
     background-color: #fff;
     border-radius: 50%;
     margin: 0 auto 2rem;
     outline: none;
+    position: relative;
+    overflow: hidden;
+    
+    img {
+        position: absolute;
+        top: 70%;
+        object-fit: contain !important;
+        height: 75% !important;
+    }
 
     &:focus {
         outline: none;
     }
 
     @media all and (max-width: 768px) {
-    width: 10rem;
-    height: 10rem;
+    width: 8rem;
+    height: 8rem;
         @media all and (max-width: 480px) {
             width: 15rem;
             height: 15rem;
@@ -81,23 +90,24 @@
         @include serviceImgStyles();
         border: 5px solid #fff;
         transition: all 0.3s ease-in-out;
+        opacity: .4;
 
         
         &-active {
             @include serviceImgStyles();
             border: 5px solid   #816E67;
             transition: all 0.3s ease-in-out;
-
+            opacity: 1;
         }
     }
 
     h3 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         font-weight: 700;
         text-align: center;
 
         @media all and (max-width: 768px) {
-            font-size: 2rem;
+            font-size: 1.8rem;
 
             @media all and (max-width: 480px) {
                 font-size: 1.6rem;
@@ -111,49 +121,98 @@
 
 }
 
-@mixin descStyles {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0;
-        visibility: hidden;
-        margin: 0 auto;
-        text-align: center;
-        max-width: 70rem;
-        font-size: 2rem;
-        font-weight: 300;
-        margin-bottom: 5rem;
-        transition: all .3s ease-in-out;
-
-        @media all and (max-width: 768px) {
-            width: 100%;
-            max-width: 80%;
-
-            @media all and (max-width: 480px) {
-            } 
-        }
-}
-
 .description-styles {
-    scroll-margin-top: 5rem;
+    scroll-margin-top: 16rem;
 
+    overflow: hidden;
+    width: 100%;
     position: relative;
-    height: 40rem;
+    padding: 5rem 0;
+    transition: all 1s ease-in-out;
+    // height: 40rem;
     @media all and (max-width: 375px) {
-        height: 50rem;
+        // height: 50rem;
 
     } 
 
-    .desc-styles {
-        @include descStyles();
-        opacity: 0;
-        visibility: hidden;
+    button {
+        transition: all .5s ease-in-out;
+        display: block;
+        margin: 3rem auto;
+        text-align: center;
+        cursor: pointer;
+        padding: 1.2rem 3.5rem;
+        font-size: inherit;
+        font-family: inherit;
+        background-color: var(--cta-bg);
+        color: var(--cta);
+        border: none;
+        
+    }
 
-        &-active {
-            @include descStyles();
-            opacity: 1;
-            visibility: visible;
-        }
+}
+@mixin descStyles {
+    overflow: hidden;
+    max-width: 70rem;
+    font-size: 2rem;
+    font-weight: 300;
+    margin: 0 auto;
+    text-align: center;
+
+    @media all and (max-width: 768px) {
+        width: 100%;
+        max-width: 80%;
+
+        @media all and (max-width: 480px) {
+        } 
+    }
+}
+
+.desc-styles {
+    @include descStyles();
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    // display: none;
+
+    &-active {
+        @include descStyles();
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@mixin pricingStyles {
+    overflow: hidden;
+    max-width: 70rem;
+    font-size: 2rem;
+    font-weight: 300;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pricing-styles {
+    @include pricingStyles();
+    height: 0;
+
+
+    &-active {
+        @include pricingStyles();
+    }
+}
+
+@mixin refStyles {
+    overflow: hidden;
+    max-width: 100%;
+    margin: 1rem auto;
+}
+
+.ref-styles {
+    @include refStyles();
+    height: 0;
+
+
+    &-active {
+        @include refStyles();
     }
 }

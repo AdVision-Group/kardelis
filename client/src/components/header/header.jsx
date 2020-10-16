@@ -11,7 +11,7 @@ import { headerStyles, headerStylesActive, headerContainerStyles, logoStyles, lo
 
 const Header = () => {
   const data = useStaticQuery(graphql`{
-  allImageSharp(filter: {fluid: {originalName: {eq: "logo.png"}}}) {
+  allImageSharp(filter: {fluid: {originalName: {eq: "logo-old.png"}}}) {
     nodes {
       fluid {
         ...GatsbyImageSharpFluid_withWebp
@@ -25,11 +25,12 @@ const Header = () => {
   const [showDrawer, setShowDrawer] = useState(false)
 
 
-  const [prevScrollpos, setPrevScrollpos] = useState(null)
   const [showNav, setShowNav] = useState(false)
 
   useEffect(() => {
-    setPrevScrollpos(window.pageYOffset)
+    if (window.pageYOffset > 70) {
+      setShowNav(true)
+    }
   }, [])
 
   useEffect(() => {
@@ -41,7 +42,6 @@ const Header = () => {
         if (currentScrollPos <= 0) return
         setShowNav(false)
       }
-      setPrevScrollpos(currentScrollPos)
     }
   })
 

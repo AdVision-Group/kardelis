@@ -1,6 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { useMenuItems } from '../../hooks/useMenuItems'
+import scrollTo from 'gatsby-plugin-smoothscroll'
 import Image from 'gatsby-image'
 
 import { footerStyles, rowStyles, colStyles } from './footer.module.scss'
@@ -26,7 +27,7 @@ const Footer = () => {
           }
         }
       }
-    allImageSharp(filter: {fluid: {originalName: {eq: "logo.png"}}}) {
+    allImageSharp(filter: {fluid: {originalName: {eq: "logo-old.png"}}}) {
         nodes {
             fluid {
                 ...GatsbyImageSharpFluid_withWebp
@@ -61,7 +62,7 @@ const Footer = () => {
                                 {idx === 0 && <ul>
                                     {navLinks.map(({ name, slug }, idx) => (
                                         <li key={idx}>
-                                            <a href={slug}>{name}</a>
+                                            <button onClick={() => scrollTo(slug)}>{name}</button>
                                         </li>
                                     ))}
                                 </ul>}

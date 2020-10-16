@@ -27,15 +27,17 @@
     // padding: 4rem 0 ;
 
     h1 {
+        font-size: 6rem;
         font-weight: normal;
-        max-width: 65rem;
-        margin-bottom: 2rem;
+        max-width: 48rem;
+        margin-bottom: 8rem;
 
         @media all and (max-width: 768px) {
         // font-size: 60%;
 
             @media all and (max-width: 480px) {
-                font-size: 2rem;
+                max-width: 33rem;
+                font-size: 4rem;
             } 
         }
     }
