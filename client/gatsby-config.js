@@ -50,12 +50,34 @@ module.exports = {
 
     services: [
       {
-        heading: "Lorem ipsum",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet nulla facilisi morbi tempus. Elit ut aliquam purus sit amet luctus venenatis. Pellentesque habitant morbi tristique senectus et. Augue ut lectus arcu bibendum at varius. Leo a diam"
+        id: 'nechty',
+        img: "nechty.png",
+        title: "Nechty",
+        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet nulla facilisi morbi tempus. Elit ut aliquam purus sit amet luctus venenatis. Pellentesque habitant morbi tristique senectus et. Augue ut lectus arcu bibendum at varius. Leo a diam"
       },
       {
-        heading: "Lorem ipsum",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet nulla facilisi morbi tempus. Elit ut aliquam purus sit amet luctus venenatis. Pellentesque habitant morbi tristique senectus et. Augue ut lectus arcu bibendum at varius. Leo a diam"
+        id: 'kozmetika',
+        img: "kozmetika.png",
+        title: "Kozmetika",
+        desc: "Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini."
+      },
+      {
+        id: 'make-up',
+        img: "make-up.png",
+        title: "Make Up",
+        desc: "Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip. Sea lettuce lettuce water chestnut eggplant winter purslane fennel azuki bean earthnut pea sierra leone bologi leek soko chicory celtuce parsley jï¿½cama salsify."
+      },
+      {
+        id: 'kadernictvo',
+        img: "kaderníctvo.png",
+        title: "Kadernictvo",
+        desc: "Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini."
+      },
+      {
+        id: 'pedikura',
+        img: "pedikúra.png",
+        title: "Pedikura",
+        desc: "Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip. Sea lettuce lettuce water chestnut eggplant winter purslane fennel azuki bean earthnut pea sierra leone bologi leek soko chicory celtuce parsley jï¿½cama salsify."
       }
     ],
 
@@ -80,24 +102,6 @@ module.exports = {
       ]
     },
 
-    sliderShowImages: [
-      {
-        name: "img_1",
-      },
-      {
-        name: "img_2",
-      },
-      {
-        name: "img_3",
-      },
-      {
-        name: "img_4",
-      },
-      {
-        name: "img_5",
-      }
-    ],
-
     contactSection: {
       heading: "Napíšte nám"
     },
@@ -111,28 +115,24 @@ module.exports = {
           heading: "Služby",
           links: [
             {
-              name: "Lorem ipsum",
-              link: "www.google.com"
+              link: '#nechty',
+              name: "Nechty",
             },
             {
-              name: "Lorem ipsum",
-              link: "www.google.com"
+              link: '#kozmetika',
+              name: "Kozmetika",
             },
             {
-              name: "Lorem ipsum",
-              link: "www.google.com"
+              link: '#make-up',
+              name: "Make Up",
             },
             {
-              name: "Lorem ipsum",
-              link: "www.google.com"
+              link: '#kadernictvo',
+              name: "Kadernictvo",
             },
             {
-              name: "Lorem ipsum",
-              link: "www.google.com"
-            },
-            {
-              name: "Lorem ipsum",
-              link: "www.google.com"
+              link: '#pedikura',
+              name: "Pedikura",
             }
           ]
         },

@@ -76,7 +76,7 @@ const Footer = () => {
                                     {col.links.map(({ link, name, slug }, idx) => {
                                         return (
                                             <li key={idx}>
-                                                <a href={link ? link : slug}>{name}</a>
+                                                <button onClick={() => scrollTo(link)}>{name}</button>
                                             </li>
                                         )
                                     })}

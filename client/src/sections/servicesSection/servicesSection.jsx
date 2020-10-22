@@ -22,7 +22,7 @@ import {
   refStyles
 } from './servicesSection.module.scss'
 
-const ServicesSection = ({ wave }) => {
+const ServicesSection = ({ wave, data: services }) => {
   const data = useStaticQuery(graphql`
   {
     images: allFile(filter: {relativeDirectory: {eq: "services"}}) {
@@ -35,7 +35,7 @@ const ServicesSection = ({ wave }) => {
         }
       }
     }
-    sliderImages: allFile(filter: {relativeDirectory: {eq: "slider"}}) {
+    nechtyImages: allFile(filter: {relativeDirectory: {eq: "nechty"}}) {
         nodes {
           childImageSharp {
             fluid {
@@ -44,37 +44,27 @@ const ServicesSection = ({ wave }) => {
           }
         }
       }
+    makeupImages: allFile(filter: {relativeDirectory: {eq: "makeup"}}) {
+      nodes {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+    }
+    kozmetikaImages: allFile(filter: {relativeDirectory: {eq: "kozmetika"}}) {
+      nodes {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+    } 
   }
 
   `)
-
-  const services = [
-    {
-      img: "nechty.png",
-      title: "Nechty",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet nulla facilisi morbi tempus. Elit ut aliquam purus sit amet luctus venenatis. Pellentesque habitant morbi tristique senectus et. Augue ut lectus arcu bibendum at varius. Leo a diam"
-    },
-    {
-      img: "kozmetika.png",
-      title: "Kozmetika",
-      desc: "Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini."
-    },
-    {
-      img: "make-up.png",
-      title: "Make Up",
-      desc: "Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip. Sea lettuce lettuce water chestnut eggplant winter purslane fennel azuki bean earthnut pea sierra leone bologi leek soko chicory celtuce parsley jï¿½cama salsify."
-    },
-    {
-      img: "kaderníctvo.png",
-      title: "Kadernictvo",
-      desc: "Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini."
-    },
-    {
-      img: "pedikúra.png",
-      title: "Pedikura",
-      desc: "Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip. Sea lettuce lettuce water chestnut eggplant winter purslane fennel azuki bean earthnut pea sierra leone bologi leek soko chicory celtuce parsley jï¿½cama salsify."
-    }
-  ]
 
   const images = data.images.nodes
 
@@ -83,18 +73,51 @@ const ServicesSection = ({ wave }) => {
       return service.img === image.childImageSharp.fluid.originalName
     })
 
+    if (service.id === 'nechty') {
+      return {
+        fluid: img[0].childImageSharp.fluid,
+        references: data.nechtyImages.nodes.map((img, idx) => {
+          return {
+            key: idx,
+            ...img
+          }
+        }),
+        ...service
+      }
+    }
+    if (service.id === 'kozmetika') {
+      return {
+        fluid: img[0].childImageSharp.fluid,
+        references: data.kozmetikaImages.nodes.map((img, idx) => {
+          return {
+            key: idx,
+            ...img
+          }
+        }),
+        ...service
+      }
+    }
+    if (service.id === 'make-up') {
+      return {
+        fluid: img[0].childImageSharp.fluid,
+        references: data.makeupImages.nodes.map((img, idx) => {
+          return {
+            key: idx,
+            ...img
+          }
+        }),
+        ...service
+      }
+    }
+
     return {
       fluid: img[0].childImageSharp.fluid,
+      references: [],
       ...service
     }
   })
 
-  const items = data.sliderImages.nodes.map((img, idx) => {
-    return {
-      key: idx,
-      ...img
-    }
-  })
+  // console.log(servicesWithImages)
 
   const [activeCard, setActiveCard] = useState(2)
   const handleClick = (idx) => {
@@ -161,14 +184,15 @@ const ServicesSection = ({ wave }) => {
 
         <div className={servicesContainerStyles}>
 
-          {servicesWithImages.map(({ title, fluid }, idx) => {
+          {servicesWithImages.map(({ title, fluid, id }, idx) => {
             return (
-              <div key={idx} className={serviceStyles}
+              <div id={id} key={idx} className={serviceStyles}
                 data-sal="fade"
                 data-sal-duration="1500"
                 data-sal-easing="ease"
                 data-sal-delay={`${idx}00`}
               >
+
                 <button className={activeCard === idx ? serviceImgStylesActive : serviceImgStyles} onClick={() => handleClick(idx)}>
                   <Image fluid={fluid} />
                 </button>
@@ -195,23 +219,42 @@ const ServicesSection = ({ wave }) => {
             {showPricing ? "Skryť cenník" : "Cenník"}
           </button>
 
+
           {/* PRICING CONTAINER */}
+          {servicesWithImages[activeCard].references.length > 0 ?
+            services.map(({ desc }, idx) => {
+              return (
+                <div
+                  key={idx}
+                  ref={activeCard === idx ? pricingRef : null}
+                  className={activeCard === idx ? pricingStylesActive : pricingStyles}
+                >
+                  Pricing
+                </div>
+              )
+            }) :
+            services.map(({ desc }, idx) => {
+              return (
+                <div
+                  key={idx}
+                  ref={activeCard === idx ? pricingRef : null}
+                  className={activeCard === idx ? pricingStylesActive : pricingStyles}
+                >
+                  Pripravujeme..
+                </div>
+              )
+            })
+          }
 
-          {services.map(({ desc }, idx) => {
-            return (
-              <div
-                key={idx}
-                ref={activeCard === idx ? pricingRef : null}
-                className={activeCard === idx ? pricingStylesActive : pricingStyles}
-              >
-                Pricing
-              </div>
+          {servicesWithImages[activeCard].references.length > 0 ?
+            (<button onClick={handleShowRef} >
+              {showRef ? "Skryť referencie" : "Referencie"}
+            </button>
+            ) : (<button onClick={handleShowRef} style={{ visibility: "hidden" }} >
+              {showRef ? "Skryť referencie" : "Referencie"}
+            </button>
             )
-          })}
-
-          <button onClick={handleShowRef}>
-            {showRef ? "Skryť referencie" : "Referencie"}
-          </button>
+          }
 
           {/* REFERENCE CONTAINER */}
 
@@ -223,7 +266,7 @@ const ServicesSection = ({ wave }) => {
                 ref={activeCard === idx ? referenceRef : null}
                 className={activeCard === idx ? refStylesActive : refStyles}
               >
-                <CustomSlider items={items} />
+                <CustomSlider height="100vh" items={servicesWithImages[activeCard].references} />
               </div>
             )
           })}

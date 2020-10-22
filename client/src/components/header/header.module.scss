@@ -22,7 +22,7 @@
 @mixin navbarStyles {
     .header-container-styles {
         @include headerContianer();
-        height: 12rem;
+        height: 20rem;
         
         &-active {
             @include headerContianer();
@@ -71,6 +71,11 @@
 .header-styles {
     @include headerStyles();
 
+    nav {
+        align-self: flex-start;
+        padding-top: 4rem;
+    }
+
         &-active {
         @include headerStyles();
         background-color: #fff;
@@ -85,7 +90,7 @@
 
 .logo-styles {
     // opacity: 0;
-    width: 12rem;
+    width: 20rem;
     // visibility: hidden;
     transition: all .5s ease-in-out;
 

@@ -2,8 +2,9 @@
 .gallery-styles {
     // height: 100%;
     // height: 65vh;
-    max-height: 75vh;
+    // max-height: 85vh;
     background-color: var(--first-service);
+    object-fit: cover;
 
     ol {
         li {
