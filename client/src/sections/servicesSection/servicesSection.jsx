@@ -2,306 +2,134 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Image from 'gatsby-image'
 import scrollTo from 'gatsby-plugin-smoothscroll'
-import CustomSlider from '../../components/slider/slider'
 
-import {
-  servicesStyles,
-  illuStyles,
-  headingStyles,
-  illuStylesBottom,
-  serviceImgStyles,
-  serviceStyles,
-  servicesContainerStyles,
-  descriptionStyles,
-  descStyles,
-  descStylesActive,
-  serviceImgStylesActive,
-  pricingStylesActive,
-  pricingStyles,
-  refStylesActive,
-  refStyles,
-  descHeadingStylesActive,
-  descHeadingStyles
-} from './servicesSection.module.scss'
+import CustomButton from '../../components/button/button'
+
+import { getServices } from './services.utils'
+
+import ServiceIcon from '../../components/service-icon/service-icon.component'
+import ServiceDescription from '../../components/service-description/service-description.component'
+import ServicePricing from '../../components/service-pricing/service-pricing.component'
+import ServiceRefSlider from '../../components/service-ref-slider/service-ref-slider.component'
+
+import './servicesSection.styles.scss'
 
 const ServicesSection = ({ wave, data: services }) => {
-  const data = useStaticQuery(graphql`
-  {
-    images: allFile(filter: {relativeDirectory: {eq: "services"}}) {
-      nodes {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid_withWebp
-            originalName
-          }
-        }
-      }
-    }
-    nechtyImages: allFile(filter: {relativeDirectory: {eq: "nechty"}}) {
-        nodes {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid_withWebp
+  const servicesData = useStaticQuery(graphql`
+        query{
+            images: allFile(filter: {relativeDirectory: {eq: "services"}}) {
+            nodes {
+                childImageSharp {
+                fluid {
+                    ...GatsbyImageSharpFluid_withWebp
+                    originalName
+                }
+                }
             }
-          }
+            }
+            nechtyImages: allFile(filter: {relativeDirectory: {eq: "nechty"}}) {
+                nodes {
+                childImageSharp {
+                    fluid {
+                    ...GatsbyImageSharpFluid_withWebp
+                    }
+                }
+                }
+            }
+            makeupImages: allFile(filter: {relativeDirectory: {eq: "makeup"}}) {
+            nodes {
+                childImageSharp {
+                fluid {
+                    ...GatsbyImageSharpFluid_withWebp
+                }
+                }
+            }
+            }
+            kozmetikaImages: allFile(filter: {relativeDirectory: {eq: "kozmetika"}}) {
+            nodes {
+                childImageSharp {
+                fluid {
+                    ...GatsbyImageSharpFluid_withWebp
+                }
+                }
+            }
+            } 
         }
-      }
-    makeupImages: allFile(filter: {relativeDirectory: {eq: "makeup"}}) {
-      nodes {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-    }
-    kozmetikaImages: allFile(filter: {relativeDirectory: {eq: "kozmetika"}}) {
-      nodes {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-    } 
-  }
-
   `)
+  const data = getServices(services, servicesData)
 
-  const images = data.images.nodes
-
-  const servicesWithImages = services.map((service) => {
-    const img = images.filter(image => {
-      return service.img === image.childImageSharp.fluid.originalName
-    })
-
-    if (service.id === 'nechty') {
-      return {
-        fluid: img[0].childImageSharp.fluid,
-        references: data.nechtyImages.nodes.map((img, idx) => {
-          return {
-            key: idx,
-            ...img
-          }
-        }),
-        pricing: true,
-
-        ...service
-      }
-    }
-    if (service.id === 'kozmetika') {
-      return {
-        fluid: img[0].childImageSharp.fluid,
-        references: data.kozmetikaImages.nodes.map((img, idx) => {
-          return {
-            key: idx,
-            ...img
-          }
-        }),
-        pricing: true,
-
-        ...service
-      }
-    }
-    if (service.id === 'make-up') {
-      return {
-        fluid: img[0].childImageSharp.fluid,
-        references: data.makeupImages.nodes.map((img, idx) => {
-          return {
-            key: idx,
-            ...img
-          }
-        }),
-        pricing: true,
-
-        ...service
-      }
-    }
-
-    return {
-      fluid: img[0].childImageSharp.fluid,
-      references: [],
-      pricing: false,
-      ...service
-    }
-  })
+  const serviceRef = useRef(null)
+  const serviceContainerRef = useRef(null)
 
 
-  const [activeCard, setActiveCard] = useState(2)
+  const [activeServiceCard, setActiveServiceCard] = useState(2)
+  const [showPricingCard, setShowPricingCard] = useState(false)
+  const [showRefCard, setShowRefCard] = useState(false)
+
+  const [serviceBodyHeight, setServiceBodyHeight] = useState(0)
+
   const handleClick = (idx) => {
-    setActiveCard(idx)
+    setActiveServiceCard(idx)
     if (window.innerWidth < 768) {
-      scrollTo('#popis-sluzieb')
+      scrollTo('#services-body')
     }
   }
-
-  const [showPricing, setShowPricing] = useState(false)
-  const [showRef, setShowRef] = useState(false)
-
-  const [containerHeight, setContainerHeight] = useState(0)
-  const pricingButtonRef = useRef(null)
-  const descContainerRef = useRef(null)
-  const paragraphRef = useRef(null)
-  const pricingRef = useRef(null)
-  const referenceRef = useRef(null)
 
   useEffect(() => {
-    if (pricingButtonRef.current) {
-      setContainerHeight(paragraphRef.current.offsetHeight + pricingButtonRef.current.offsetHeight + 84)
-    } else {
-      setContainerHeight(paragraphRef.current.offsetHeight)
+    setServiceBodyHeight(serviceRef.current.clientHeight)
+  }, [activeServiceCard, showPricingCard, showRefCard])
 
-    }
-    if (showPricing) {
-      if (pricingRef.current) {
-        setContainerHeight(paragraphRef.current.offsetHeight + pricingRef.current.offsetHeight + 250)
-      } else {
-        setContainerHeight(paragraphRef.current.offsetHeight)
-
-      }
-      if (showRef) {
-        if (pricingRef.current && referenceRef.current) {
-          setContainerHeight(paragraphRef.current.offsetHeight + pricingRef.current.offsetHeight + referenceRef.current.offsetHeight + 300)
-        } else {
-          setContainerHeight(paragraphRef.current.offsetHeight)
-        }
-      }
-    }
-
-  }, [activeCard, containerHeight, showPricing, showRef])
-
-  const handleShowPricing = () => {
-    if (pricingRef.current) {
-      setContainerHeight(containerHeight + pricingRef.current.offsetHeight)
-    } else {
-      setContainerHeight(paragraphRef.current.offsetHeight)
-    }
-    if (showPricing) {
-      setShowRef(false)
-    }
-    setShowPricing(!showPricing)
-  }
-
-  const handleShowRef = () => {
-    if (referenceRef.current) {
-      setContainerHeight(containerHeight + referenceRef.current.offsetHeight)
-    } else {
-      setContainerHeight(paragraphRef.current.offsetHeight)
-    }
-    setShowRef(!showRef)
-  }
+  // useEffect(() => {
+  //   setContainerHeight(serviceContainerRef.current.clientHeight)
+  // })
 
   return (
-    <section id='sluzby' className={servicesStyles}>
+    <section id='sluzby' className='services-section'>
       <div className='container'>
-        <div className={headingStyles}
+        <div className={'heading-styles'}
           data-sal="fade"
           data-sal-duration="1500"
           data-sal-easing="ease"
         >
           <h2>Naše služby</h2>
-          <div className={illuStyles}>
+          <div className={"illu-styles"}>
             <Image fluid={wave} />
           </div>
         </div>
 
-        {/* SERVICES ICONS */}
-
-        <div className={servicesContainerStyles}>
-          {servicesWithImages.map(({ title, fluid, id }, idx) => {
-            return (
-              <div id={id} key={idx} className={serviceStyles}
-                data-sal="fade"
-                data-sal-duration="1500"
-                data-sal-easing="ease"
-                data-sal-delay={`${idx}00`}
-              >
-
-                <button className={activeCard === idx ? serviceImgStylesActive : serviceImgStyles} onClick={() => handleClick(idx)}>
-                  <Image fluid={fluid} />
-                </button>
-                <h3>{title}</h3>
-              </div>
-            )
-          })}
-        </div>
-
-        <div id="popis-sluzieb">
-          <div ref={descContainerRef} className={descriptionStyles} style={{ height: containerHeight }}>
-            {servicesWithImages.map(({ desc, pricing }, idx) => {
-              if (pricing) {
-                return (
-                  <p
-                    key={idx}
-                    ref={activeCard === idx ? paragraphRef : null}
-                    className={activeCard === idx ? descStylesActive : descStyles}
-                  >
-                    {desc}
-                  </p>
-                )
-              }
-
-              return (
-                <h2
-                  key={idx}
-                  ref={activeCard === idx ? paragraphRef : null}
-                  className={activeCard === idx ? descHeadingStylesActive : descHeadingStyles}
-                >
-                  {desc}
-                </h2>
-              )
-            })}
-
-            {servicesWithImages[activeCard].pricing && <button ref={pricingButtonRef} onClick={handleShowPricing} >
-              {showPricing ? "Skryť cenník" : "Cenník"}
-            </button>}
-
-
-            {/* PRICING CONTAINER */}
-            {servicesWithImages[activeCard].pricing &&
-              services.map(({ desc }, idx) => {
-                return (
-                  <div
-                    key={idx}
-                    ref={activeCard === idx ? pricingRef : null}
-                    className={activeCard === idx ? pricingStylesActive : pricingStyles}
-                  >
-                    Pricing
-                  </div>
-                )
-              })
+        <div className='services-container'>
+          <div className='services-header'>
+            {
+              data.map((service, idx) => (
+                <ServiceIcon key={idx} title={service.title} fluid={service.fluid} handleClick={() => handleClick(idx)} />
+              ))
             }
-
-            {servicesWithImages[activeCard].pricing &&
-              (<button onClick={handleShowRef} >
-                {showRef ? "Skryť referencie" : "Referencie"}
-              </button>
-              )
-            }
-
-            {/* REFERENCE CONTAINER */}
-
-
-            {servicesWithImages[activeCard].pricing &&
-              servicesWithImages.map(({ desc }, idx) => {
-                return (
-                  <div
-                    key={idx}
-                    ref={activeCard === idx ? referenceRef : null}
-                    className={activeCard === idx ? refStylesActive : refStyles}
-                  >
-                    <CustomSlider brown={'brown'} customClassName='carousel-item-services' height="100vh" items={servicesWithImages[activeCard].references} />
-                  </div>
-                )
-              })}
           </div>
-
+          <div id='services-body' style={{ height: "10rem" }} />
+          <div className='services-body' ref={serviceContainerRef} style={{ height: serviceBodyHeight }}>
+            <div className='service' ref={serviceRef}>
+              <ServiceDescription desc={data[activeServiceCard].desc} />
+              {data[activeServiceCard].pricing && (
+                <CustomButton
+                  onClick={() => setShowPricingCard(!showPricingCard)}
+                >
+                  {showPricingCard ? "Skryť cenník" : "Cenník"}
+                </CustomButton>
+              )}
+              {showPricingCard && data[activeServiceCard].pricing && <ServicePricing />}
+              {showPricingCard && data[activeServiceCard].pricing && (
+                <CustomButton
+                  onClick={() => setShowRefCard(!showRefCard)}
+                >
+                  {showRefCard ? "Skryť referencie" : "Referencie"}
+                </CustomButton>
+              )}
+              {showPricingCard && showRefCard && data[activeServiceCard].pricing && <ServiceRefSlider items={data[activeServiceCard].references} />}
+            </div>
+          </div>
         </div>
 
-
-
-
-        <div className={illuStylesBottom}>
+        <div className={'illu-styles-bottom'}>
           <Image fluid={wave} />
         </div>
       </div>

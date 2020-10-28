@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import Image from 'gatsby-image'
 import { Carousel, CarouselItem, CarouselIndicators, CarouselControl } from 'reactstrap'
 
-import './slider.styles.scss'
+import './service-ref-slider.styles.scss'
 
-const CustomSlider = ({ items }) => {
-
+const ServiceRefSlider = ({ items }) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
 
@@ -32,7 +31,7 @@ const CustomSlider = ({ items }) => {
             activeIndex={activeIndex}
             next={next}
             previous={previous}
-            className={'gallery-styles'}
+            className='service-ref-slider'
         >
             <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {items.map((item, idx) => {
@@ -47,10 +46,10 @@ const CustomSlider = ({ items }) => {
                     </CarouselItem>
                 );
             })}
-            <CarouselControl className={`control`} direction="prev" directionText="Previous" onClickHandler={previous} />
-            <CarouselControl className={`control`} direction="next" directionText="Next" onClickHandler={next} />
+            <CarouselControl className='control left' direction="prev" directionText="Previous" onClickHandler={previous} />
+            <CarouselControl className='control right' direction="next" directionText="Next" onClickHandler={next} />
         </Carousel>
     )
 }
 
-export default CustomSlider
+export default ServiceRefSlider
