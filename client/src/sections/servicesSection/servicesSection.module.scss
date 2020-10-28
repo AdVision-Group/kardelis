@@ -15,9 +15,13 @@
         font-weight: 700;
         text-align: center;
         margin-bottom: 3rem;
+        font-family: ‘Dancing Script’,
+            cursive;
+
     }
 
 }
+
 .illu-styles {
     width: 80%;
     margin: 0 auto;
@@ -47,9 +51,9 @@
     justify-content: space-evenly;
 
     @media all and (max-width: 480px) {
-    flex-direction: column;
-    align-items: center;
-    } 
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 @mixin serviceImgStyles {
@@ -63,7 +67,7 @@
     outline: none;
     position: relative;
     overflow: hidden;
-    
+
     img {
         // position: absolute;
         // top: 70%;
@@ -76,12 +80,13 @@
     }
 
     @media all and (max-width: 768px) {
-    width: 8rem;
-    height: 8rem;
+        width: 8rem;
+        height: 8rem;
+
         @media all and (max-width: 480px) {
             width: 15rem;
             height: 15rem;
-        } 
+        }
     }
 }
 
@@ -92,10 +97,10 @@
         transition: all 0.3s ease-in-out;
         opacity: .3;
 
-        
+
         &-active {
             @include serviceImgStyles();
-            border: 5px solid   #816E67;
+            border: 5px solid #816E67;
             transition: all 0.3s ease-in-out;
             opacity: 1;
         }
@@ -111,29 +116,28 @@
 
             @media all and (max-width: 480px) {
                 font-size: 1.6rem;
-            } 
+            }
         }
     }
 
     @media all and (max-width: 480px) {
         margin-bottom: 2rem;
-    } 
+    }
 
 }
 
 .description-styles {
-    scroll-margin-top: 16rem;
-
     overflow: hidden;
     width: 100%;
     position: relative;
     padding: 5rem 0;
     transition: all 1s ease-in-out;
+
     // height: 40rem;
     @media all and (max-width: 375px) {
         // height: 50rem;
 
-    } 
+    }
 
     button {
         transition: all .5s ease-in-out;
@@ -147,10 +151,11 @@
         background-color: var(--cta-bg);
         color: var(--cta);
         border: none;
-        
+
     }
 
 }
+
 @mixin descStyles {
     overflow: hidden;
     max-width: 70rem;
@@ -163,8 +168,7 @@
         width: 100%;
         max-width: 80%;
 
-        @media all and (max-width: 480px) {
-        } 
+        @media all and (max-width: 480px) {}
     }
 }
 
@@ -178,6 +182,40 @@
     &-active {
         @include descStyles();
         opacity: 1;
+        visibility: visible;
+    }
+}
+
+@mixin descHeadingStyles {
+    overflow: hidden;
+    max-width: 70rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 auto;
+    font-family: ‘Dancing Script’, cursive;
+
+    @media all and (max-width: 768px) {
+        width: 100%;
+        max-width: 80%;
+
+        @media all and (max-width: 480px) {}
+    }
+}
+
+.desc-heading-styles {
+    @include descHeadingStyles();
+
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    // display: none;
+
+    &-active {
+        @include descHeadingStyles();
+        opacity: 1;
+
+
         visibility: visible;
     }
 }
@@ -203,7 +241,9 @@
 
 @mixin refStyles {
     overflow: hidden;
-    max-width: 100%;
+    width: 100%;
+    max-width: 70rem;
+
     margin: 1rem auto;
 }
 

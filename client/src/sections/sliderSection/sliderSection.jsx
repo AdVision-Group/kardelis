@@ -4,7 +4,7 @@ import CustomSlider from '../../components/slider/slider'
 import { sliderStyles } from './sliderSection.module.scss'
 
 const SliderSection = () => {
-    const data = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     {
       allFile(filter: {relativeDirectory: {eq: "slider"}}) {
         nodes {
@@ -17,19 +17,19 @@ const SliderSection = () => {
       }
     }
   `)
-    const items = data.allFile.nodes.map((img, idx) => {
-        return {
-            key: idx,
-            ...img
-        }
-    })
+  const items = data.allFile.nodes.map((img, idx) => {
+    return {
+      key: idx,
+      ...img
+    }
+  })
 
-    return (
-        <section id='galeria' className={sliderStyles}>
-            <CustomSlider items={items} />
-        </section>
+  return (
+    <section id='galeria' className={sliderStyles} >
+      <CustomSlider items={items} />
+    </section>
 
-    )
+  )
 }
 
 export default SliderSection

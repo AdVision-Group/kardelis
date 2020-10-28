@@ -4,7 +4,7 @@ import { Carousel, CarouselItem, CarouselIndicators, CarouselControl } from 'rea
 
 import { galleryStyles, controlsStyles } from './slider.module.scss'
 
-const CustomSlider = ({ items, height }) => {
+const CustomSlider = ({ items, customClassName, brown }) => {
 
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
@@ -32,8 +32,7 @@ const CustomSlider = ({ items, height }) => {
             activeIndex={activeIndex}
             next={next}
             previous={previous}
-            className={galleryStyles}
-            style={{ height: height }}
+            className={`${customClassName} gallery-styles`}
         >
             <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {items.map((item, idx) => {
@@ -48,8 +47,8 @@ const CustomSlider = ({ items, height }) => {
                     </CarouselItem>
                 );
             })}
-            <CarouselControl className={controlsStyles} direction="prev" directionText="Previous" onClickHandler={previous} />
-            <CarouselControl className={controlsStyles} direction="next" directionText="Next" onClickHandler={next} />
+            <CarouselControl className={`${controlsStyles} ${brown}`} direction="prev" directionText="Previous" onClickHandler={previous} />
+            <CarouselControl className={`${controlsStyles} ${brown}`} direction="next" directionText="Next" onClickHandler={next} />
         </Carousel>
     )
 }

@@ -19,7 +19,9 @@ import {
   pricingStylesActive,
   pricingStyles,
   refStylesActive,
-  refStyles
+  refStyles,
+  descHeadingStylesActive,
+  descHeadingStyles
 } from './servicesSection.module.scss'
 
 const ServicesSection = ({ wave, data: services }) => {
@@ -82,6 +84,8 @@ const ServicesSection = ({ wave, data: services }) => {
             ...img
           }
         }),
+        pricing: true,
+
         ...service
       }
     }
@@ -94,6 +98,8 @@ const ServicesSection = ({ wave, data: services }) => {
             ...img
           }
         }),
+        pricing: true,
+
         ...service
       }
     }
@@ -106,6 +112,8 @@ const ServicesSection = ({ wave, data: services }) => {
             ...img
           }
         }),
+        pricing: true,
+
         ...service
       }
     }
@@ -113,16 +121,18 @@ const ServicesSection = ({ wave, data: services }) => {
     return {
       fluid: img[0].childImageSharp.fluid,
       references: [],
+      pricing: false,
       ...service
     }
   })
 
-  // console.log(servicesWithImages)
 
   const [activeCard, setActiveCard] = useState(2)
   const handleClick = (idx) => {
     setActiveCard(idx)
-    scrollTo('#popis-sluzieb')
+    if (window.innerWidth < 768) {
+      scrollTo('#popis-sluzieb')
+    }
   }
 
   const [showPricing, setShowPricing] = useState(false)
@@ -136,11 +146,25 @@ const ServicesSection = ({ wave, data: services }) => {
   const referenceRef = useRef(null)
 
   useEffect(() => {
-    setContainerHeight(paragraphRef.current.offsetHeight + pricingButtonRef.current.offsetHeight + 84)
+    if (pricingButtonRef.current) {
+      setContainerHeight(paragraphRef.current.offsetHeight + pricingButtonRef.current.offsetHeight + 84)
+    } else {
+      setContainerHeight(paragraphRef.current.offsetHeight)
+
+    }
     if (showPricing) {
-      setContainerHeight(paragraphRef.current.offsetHeight + pricingRef.current.offsetHeight + 250)
+      if (pricingRef.current) {
+        setContainerHeight(paragraphRef.current.offsetHeight + pricingRef.current.offsetHeight + 250)
+      } else {
+        setContainerHeight(paragraphRef.current.offsetHeight)
+
+      }
       if (showRef) {
-        setContainerHeight(paragraphRef.current.offsetHeight + pricingRef.current.offsetHeight + referenceRef.current.offsetHeight + 300)
+        if (pricingRef.current && referenceRef.current) {
+          setContainerHeight(paragraphRef.current.offsetHeight + pricingRef.current.offsetHeight + referenceRef.current.offsetHeight + 300)
+        } else {
+          setContainerHeight(paragraphRef.current.offsetHeight)
+        }
       }
     }
 
@@ -167,7 +191,6 @@ const ServicesSection = ({ wave, data: services }) => {
     setShowRef(!showRef)
   }
 
-
   return (
     <section id='sluzby' className={servicesStyles}>
       <div className='container'>
@@ -182,8 +205,9 @@ const ServicesSection = ({ wave, data: services }) => {
           </div>
         </div>
 
-        <div className={servicesContainerStyles}>
+        {/* SERVICES ICONS */}
 
+        <div className={servicesContainerStyles}>
           {servicesWithImages.map(({ title, fluid, id }, idx) => {
             return (
               <div id={id} key={idx} className={serviceStyles}
@@ -202,75 +226,79 @@ const ServicesSection = ({ wave, data: services }) => {
           })}
         </div>
 
-        <div ref={descContainerRef} id="popis-sluzieb" className={descriptionStyles} style={{ height: containerHeight }}>
-          {services.map(({ desc }, idx) => {
-            return (
-              <p
-                key={idx}
-                ref={activeCard === idx ? paragraphRef : null}
-                className={activeCard === idx ? descStylesActive : descStyles}
-              >
-                {desc}
-              </p>
-            )
-          })}
+        <div id="popis-sluzieb">
+          <div ref={descContainerRef} className={descriptionStyles} style={{ height: containerHeight }}>
+            {servicesWithImages.map(({ desc, pricing }, idx) => {
+              if (pricing) {
+                return (
+                  <p
+                    key={idx}
+                    ref={activeCard === idx ? paragraphRef : null}
+                    className={activeCard === idx ? descStylesActive : descStyles}
+                  >
+                    {desc}
+                  </p>
+                )
+              }
 
-          <button ref={pricingButtonRef} onClick={handleShowPricing} >
-            {showPricing ? "Skryť cenník" : "Cenník"}
-          </button>
-
-
-          {/* PRICING CONTAINER */}
-          {servicesWithImages[activeCard].references.length > 0 ?
-            services.map(({ desc }, idx) => {
               return (
-                <div
+                <h2
                   key={idx}
-                  ref={activeCard === idx ? pricingRef : null}
-                  className={activeCard === idx ? pricingStylesActive : pricingStyles}
+                  ref={activeCard === idx ? paragraphRef : null}
+                  className={activeCard === idx ? descHeadingStylesActive : descHeadingStyles}
                 >
-                  Pricing
-                </div>
+                  {desc}
+                </h2>
               )
-            }) :
-            services.map(({ desc }, idx) => {
-              return (
-                <div
-                  key={idx}
-                  ref={activeCard === idx ? pricingRef : null}
-                  className={activeCard === idx ? pricingStylesActive : pricingStyles}
-                >
-                  Pripravujeme..
-                </div>
+            })}
+
+            {servicesWithImages[activeCard].pricing && <button ref={pricingButtonRef} onClick={handleShowPricing} >
+              {showPricing ? "Skryť cenník" : "Cenník"}
+            </button>}
+
+
+            {/* PRICING CONTAINER */}
+            {servicesWithImages[activeCard].pricing &&
+              services.map(({ desc }, idx) => {
+                return (
+                  <div
+                    key={idx}
+                    ref={activeCard === idx ? pricingRef : null}
+                    className={activeCard === idx ? pricingStylesActive : pricingStyles}
+                  >
+                    Pricing
+                  </div>
+                )
+              })
+            }
+
+            {servicesWithImages[activeCard].pricing &&
+              (<button onClick={handleShowRef} >
+                {showRef ? "Skryť referencie" : "Referencie"}
+              </button>
               )
-            })
-          }
+            }
 
-          {servicesWithImages[activeCard].references.length > 0 ?
-            (<button onClick={handleShowRef} >
-              {showRef ? "Skryť referencie" : "Referencie"}
-            </button>
-            ) : (<button onClick={handleShowRef} style={{ visibility: "hidden" }} >
-              {showRef ? "Skryť referencie" : "Referencie"}
-            </button>
-            )
-          }
-
-          {/* REFERENCE CONTAINER */}
+            {/* REFERENCE CONTAINER */}
 
 
-          {services.map(({ desc }, idx) => {
-            return (
-              <div
-                key={idx}
-                ref={activeCard === idx ? referenceRef : null}
-                className={activeCard === idx ? refStylesActive : refStyles}
-              >
-                <CustomSlider height="100vh" items={servicesWithImages[activeCard].references} />
-              </div>
-            )
-          })}
+            {servicesWithImages[activeCard].pricing &&
+              servicesWithImages.map(({ desc }, idx) => {
+                return (
+                  <div
+                    key={idx}
+                    ref={activeCard === idx ? referenceRef : null}
+                    className={activeCard === idx ? refStylesActive : refStyles}
+                  >
+                    <CustomSlider brown={'brown'} customClassName='carousel-item-services' height="100vh" items={servicesWithImages[activeCard].references} />
+                  </div>
+                )
+              })}
+          </div>
+
         </div>
+
+
 
 
         <div className={illuStylesBottom}>

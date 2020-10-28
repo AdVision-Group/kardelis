@@ -71,13 +71,13 @@ module.exports = {
         id: 'kadernictvo',
         img: "kaderníctvo.png",
         title: "Kadernictvo",
-        desc: "Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini."
+        desc: "Pripravujeme"
       },
       {
         id: 'pedikura',
         img: "pedikúra.png",
         title: "Pedikura",
-        desc: "Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip. Sea lettuce lettuce water chestnut eggplant winter purslane fennel azuki bean earthnut pea sierra leone bologi leek soko chicory celtuce parsley jï¿½cama salsify."
+        desc: "Pripravujeme"
       }
     ],
 

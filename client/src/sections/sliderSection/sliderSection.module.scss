@@ -2,4 +2,24 @@
     scroll-margin-top: 16rem;
 
     overflow: hidden;
+
+
+    // .carousel-item {
+    //     height: 65vh;
+    //     width: 100%;
+
+    //     .gatsby-image-wrapper {
+    //         // height: 75vh;
+    //         // width: auto !important;
+    //         height: 100%;
+
+
+    img {
+        // width: auto !important;
+        object-fit: cover !important;
+        // height: auto !important;
+    }
+
+    //     }
+    // }
 }
