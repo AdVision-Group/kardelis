@@ -79,9 +79,8 @@ const ServicesSection = ({ wave, data: services }) => {
     setServiceBodyHeight(serviceRef.current.clientHeight)
   }, [activeServiceCard, showPricingCard, showRefCard])
 
-  // useEffect(() => {
-  //   setContainerHeight(serviceContainerRef.current.clientHeight)
-  // })
+
+  console.log(data)
 
   return (
     <section id='sluzby' className='services-section'>
@@ -101,14 +100,14 @@ const ServicesSection = ({ wave, data: services }) => {
           <div className='services-header'>
             {
               data.map((service, idx) => (
-                <ServiceIcon key={idx} title={service.title} fluid={service.fluid} handleClick={() => handleClick(idx)} />
+                <ServiceIcon key={idx} title={service.title} fluid={service.fluid} handleClick={() => handleClick(idx)} active={idx === activeServiceCard} />
               ))
             }
           </div>
           <div id='services-body' style={{ height: "10rem" }} />
           <div className='services-body' ref={serviceContainerRef} style={{ height: serviceBodyHeight }}>
             <div className='service' ref={serviceRef}>
-              <ServiceDescription desc={data[activeServiceCard].desc} />
+              <ServiceDescription desc={data[activeServiceCard].desc} heading={data[activeServiceCard].heading} />
               {data[activeServiceCard].pricing && (
                 <CustomButton
                   onClick={() => setShowPricingCard(!showPricingCard)}
@@ -116,7 +115,7 @@ const ServicesSection = ({ wave, data: services }) => {
                   {showPricingCard ? "Skryť cenník" : "Cenník"}
                 </CustomButton>
               )}
-              {showPricingCard && data[activeServiceCard].pricing && <ServicePricing />}
+              {showPricingCard && data[activeServiceCard].pricing && <ServicePricing pricing={data[activeServiceCard].pricing} />}
               {showPricingCard && data[activeServiceCard].pricing && (
                 <CustomButton
                   onClick={() => setShowRefCard(!showRefCard)}

@@ -4,9 +4,9 @@ import Image from 'gatsby-image'
 
 import './service-icon.styles.scss'
 
-const ServiceIcon = ({ title, fluid, handleClick }) => {
+const ServiceIcon = ({ title, fluid, handleClick, active }) => {
     return (
-        <div className='service-icon' onClick={handleClick}>
+        <div className={`${active ? "active" : ""} service-icon`} onClick={handleClick}>
             <div className='image-container'>
                 <Image fluid={fluid} alt={title} />
             </div>

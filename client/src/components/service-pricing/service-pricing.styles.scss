@@ -1,0 +1,31 @@
+.service-pricing {
+    width: 100%;
+
+
+    .pricing-table {
+        padding: 2rem;
+        width: 100%;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+
+        .head {
+            margin-bottom: 2rem;
+            font-weight: 900;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            font-weight: lighter;
+
+            &:not(:last-child) {
+                margin-bottom: 2rem;
+            }
+        }
+    }
+
+    .additional {
+        margin: 3rem 0;
+    }
+}

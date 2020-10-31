@@ -44,6 +44,15 @@ export const query = graphql`
         title
         img
         desc
+        heading
+        pricing {
+          title
+          additional
+          services {
+            name
+            price
+          }
+        }
       }
       contactSection {
         heading
