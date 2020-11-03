@@ -1,9 +1,10 @@
 import React from 'react'
 // import { useStaticQuery, graphql } from 'gatsby'
 // import Image from 'gatsby-image'
-
+import scrollTo from 'gatsby-plugin-smoothscroll'
 // import Video from '../../components/video/video'
 import bgVideo from '../../images/landing-page-video.mp4'
+import CustomButton from '../../components/button/button'
 
 // import { FaFacebook, FaInstagram } from 'react-icons/fa'
 import {
@@ -101,6 +102,10 @@ const HeroSection = ({ data }) => {
                         }
                     })}
                 </div> */}
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, minus! Culpa debitis amet eius ducimus temporibus quae ratione quis eum veniam pariatur, placeat vitae facere laboriosam commodi quod necessitatibus hic laudantium ab recusandae! Mollitia quasi soluta ad sint dolorum totam!</p>
+                <CustomButton onClick={() => scrollTo('#sluzby')}>
+                    Zistiť viac
+                </CustomButton>
             </div>
         </section>
     )

@@ -75,12 +75,26 @@ const ServicesSection = ({ wave, data: services }) => {
     }
   }
 
+  const handlePricingButtonClick = () => {
+    setShowPricingCard(!showPricingCard)
+    // if (window.innerWidth < 768) {
+    // }
+  }
+
+  useEffect(() => {
+    if (showPricingCard) {
+      console.log('scroll')
+      setTimeout(() => {
+        scrollTo('#cennik')
+
+      }, 1000)
+    }
+  }, [showPricingCard])
+
   useEffect(() => {
     setServiceBodyHeight(serviceRef.current.clientHeight)
   }, [activeServiceCard, showPricingCard, showRefCard])
 
-
-  console.log(data)
 
   return (
     <section id='sluzby' className='services-section'>
@@ -109,9 +123,7 @@ const ServicesSection = ({ wave, data: services }) => {
             <div className='service' ref={serviceRef}>
               <ServiceDescription desc={data[activeServiceCard].desc} heading={data[activeServiceCard].heading} />
               {data[activeServiceCard].pricing && (
-                <CustomButton
-                  onClick={() => setShowPricingCard(!showPricingCard)}
-                >
+                <CustomButton onClick={handlePricingButtonClick}>
                   {showPricingCard ? "Skryť cenník" : "Cenník"}
                 </CustomButton>
               )}

@@ -3,12 +3,12 @@ import React from 'react'
 import './service-pricing.styles.scss'
 
 const ServicePricing = ({ pricing: { title, services = [], additional } }) => {
-    console.log(additional)
-
 
     return (
         <div className='service-pricing'>
-            <div className='pricing-table'>
+            <div style={{ height: '8rem' }} />
+
+            <div id='cennik' className='pricing-table'>
                 <div className='head'>
                     <h3>{title}</h3>
                 </div>

@@ -78,7 +78,7 @@ module.exports = {
             },
             {
               name: 'Odstránenie gél-laku',
-              price: "0.10"
+              price: "10"
             },
             {
               name: 'Gelové/akrylove nechty - nové',

@@ -11,7 +11,7 @@ import { headerStyles, headerStylesActive, headerContainerStyles, logoStyles, lo
 
 const Header = () => {
   const data = useStaticQuery(graphql`{
-  allImageSharp(filter: {fluid: {originalName: {eq: "logo-old.png"}}}) {
+  allImageSharp(filter: {fluid: {originalName: {eq: "logo.png"}}}) {
     nodes {
       fluid {
         ...GatsbyImageSharpFluid_withWebp
