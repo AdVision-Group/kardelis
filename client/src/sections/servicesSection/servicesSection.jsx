@@ -1,11 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import Image from 'gatsby-image'
 import scrollTo from 'gatsby-plugin-smoothscroll'
 
 import CustomButton from '../../components/button/button'
 
-import { getServices } from './services.utils'
+import { ServicesContext } from '../../contexts/services/services.context'
+
+import SectionHeading from '../../components/section-heading/section-heading.component'
 
 import ServiceIcon from '../../components/service-icon/service-icon.component'
 import ServiceDescription from '../../components/service-description/service-description.component'
@@ -14,62 +15,20 @@ import ServiceRefSlider from '../../components/service-ref-slider/service-ref-sl
 
 import './servicesSection.styles.scss'
 
-const ServicesSection = ({ wave, data: services }) => {
-  const servicesData = useStaticQuery(graphql`
-        query{
-            images: allFile(filter: {relativeDirectory: {eq: "services"}}) {
-            nodes {
-                childImageSharp {
-                fluid {
-                    ...GatsbyImageSharpFluid_withWebp
-                    originalName
-                }
-                }
-            }
-            }
-            nechtyImages: allFile(filter: {relativeDirectory: {eq: "nechty"}}) {
-                nodes {
-                childImageSharp {
-                    fluid {
-                    ...GatsbyImageSharpFluid_withWebp
-                    }
-                }
-                }
-            }
-            makeupImages: allFile(filter: {relativeDirectory: {eq: "makeup"}}) {
-            nodes {
-                childImageSharp {
-                fluid {
-                    ...GatsbyImageSharpFluid_withWebp
-                }
-                }
-            }
-            }
-            kozmetikaImages: allFile(filter: {relativeDirectory: {eq: "kozmetika"}}) {
-            nodes {
-                childImageSharp {
-                fluid {
-                    ...GatsbyImageSharpFluid_withWebp
-                }
-                }
-            }
-            } 
-        }
-  `)
-  const data = getServices(services, servicesData)
+const ServicesSection = () => {
+  const { services, wave } = useContext(ServicesContext)
 
   const serviceRef = useRef(null)
   const serviceContainerRef = useRef(null)
 
-
-  const [activeServiceCard, setActiveServiceCard] = useState(2)
+  const [activeServiceCard, setActiveServiceCard] = useState(null)
   const [showPricingCard, setShowPricingCard] = useState(false)
-  const [showRefCard, setShowRefCard] = useState(false)
 
   const [serviceBodyHeight, setServiceBodyHeight] = useState(0)
 
   const handleClick = (idx) => {
     setActiveServiceCard(idx)
+    setShowPricingCard(false)
     if (window.innerWidth < 768) {
       scrollTo('#services-body')
     }
@@ -77,65 +36,46 @@ const ServicesSection = ({ wave, data: services }) => {
 
   const handlePricingButtonClick = () => {
     setShowPricingCard(!showPricingCard)
-    // if (window.innerWidth < 768) {
-    // }
   }
 
   useEffect(() => {
     if (showPricingCard) {
-      console.log('scroll')
       setTimeout(() => {
         scrollTo('#cennik')
-
       }, 1000)
     }
   }, [showPricingCard])
 
   useEffect(() => {
     setServiceBodyHeight(serviceRef.current.clientHeight)
-  }, [activeServiceCard, showPricingCard, showRefCard])
+  }, [activeServiceCard, showPricingCard])
 
 
   return (
     <section id='sluzby' className='services-section'>
       <div className='container'>
-        <div className={'heading-styles'}
-          data-sal="fade"
-          data-sal-duration="1500"
-          data-sal-easing="ease"
-        >
-          <h2>Naše služby</h2>
-          <div className={"illu-styles"}>
-            <Image fluid={wave} />
-          </div>
-        </div>
+        <SectionHeading title='Naše služby' />
 
         <div className='services-container'>
           <div className='services-header'>
             {
-              data.map((service, idx) => (
-                <ServiceIcon key={idx} title={service.title} fluid={service.fluid} handleClick={() => handleClick(idx)} active={idx === activeServiceCard} />
+              services.map((service, idx) => (
+                <ServiceIcon key={idx} title={service.title} fluid={service.img.childImageSharp.fluid} handleClick={() => handleClick(idx)} active={idx === activeServiceCard} />
               ))
             }
           </div>
           <div id='services-body' style={{ height: "10rem" }} />
           <div className='services-body' ref={serviceContainerRef} style={{ height: serviceBodyHeight }}>
             <div className='service' ref={serviceRef}>
-              <ServiceDescription desc={data[activeServiceCard].desc} heading={data[activeServiceCard].heading} />
-              {data[activeServiceCard].pricing && (
+              {activeServiceCard !== null && <ServiceDescription desc={services[activeServiceCard].desc} heading={services[activeServiceCard].heading} />}
+              {activeServiceCard !== null && services[activeServiceCard].pricing && (
                 <CustomButton onClick={handlePricingButtonClick}>
-                  {showPricingCard ? "Skryť cenník" : "Cenník"}
+                  {showPricingCard ? "Skryť cenník a refecenzie" : "Cenník a referencie"}
                 </CustomButton>
               )}
-              {showPricingCard && data[activeServiceCard].pricing && <ServicePricing pricing={data[activeServiceCard].pricing} />}
-              {showPricingCard && data[activeServiceCard].pricing && (
-                <CustomButton
-                  onClick={() => setShowRefCard(!showRefCard)}
-                >
-                  {showRefCard ? "Skryť referencie" : "Referencie"}
-                </CustomButton>
-              )}
-              {showPricingCard && showRefCard && data[activeServiceCard].pricing && <ServiceRefSlider items={data[activeServiceCard].references} />}
+              {showPricingCard && services[activeServiceCard].pricing && <ServicePricing pricing={services[activeServiceCard].pricing} />}
+
+              {showPricingCard && services[activeServiceCard].pricing && <ServiceRefSlider items={services[activeServiceCard].references} />}
             </div>
           </div>
         </div>

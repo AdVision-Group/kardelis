@@ -13,16 +13,6 @@
     .col-styles {
         width: 50%;
 
-        h2 {
-            font-weight: bold;
-            font-size: 3rem;
-            text-align: center;
-            font-family: ‘Dancing Script’,
-                cursive;
-
-        }
-
-
         &:first-child {
             margin-top: 8rem;
 
@@ -38,14 +28,6 @@
 
         .col-styles {
             width: 100%;
-            padding: 0 3rem;
         }
     }
-}
-
-.illu-styles {
-    width: 90%;
-    margin: 0 auto;
-    margin-bottom: 8rem;
-    transform: scaleY(-1);
 }

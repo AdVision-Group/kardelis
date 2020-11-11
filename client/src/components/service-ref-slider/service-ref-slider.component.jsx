@@ -26,29 +26,35 @@ const ServiceRefSlider = ({ items }) => {
     }
 
     return (
-        <Carousel
-            id='galeria'
-            activeIndex={activeIndex}
-            next={next}
-            previous={previous}
-            className='service-ref-slider'
-        >
-            <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
-            {items.map((item, idx) => {
-                return (
-                    <CarouselItem
-                        onExiting={() => setAnimating(true)}
-                        onExited={() => setAnimating(false)}
-                        key={idx}
-                    >
-                        <Image key={idx} fluid={item.childImageSharp.fluid} />
-                        {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
-                    </CarouselItem>
-                );
-            })}
-            <CarouselControl className='control left' direction="prev" directionText="Previous" onClickHandler={previous} />
-            <CarouselControl className='control right' direction="next" directionText="Next" onClickHandler={next} />
-        </Carousel>
+        <div id='referencie'>
+            <div style={{ height: '8rem' }} />
+
+            <Carousel
+                id='galeria'
+                activeIndex={activeIndex}
+                next={next}
+                previous={previous}
+                className='service-ref-slider'
+            >
+
+                <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
+                {items.map((item, idx) => {
+                    return (
+                        <CarouselItem
+                            onExiting={() => setAnimating(true)}
+                            onExited={() => setAnimating(false)}
+                            key={`${idx}img`}
+                        >
+                            <Image key={`${idx}image`} fluid={item.childImageSharp.fluid} />
+                            {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
+                        </CarouselItem>
+                    );
+                })}
+                <CarouselControl className='control left' direction="prev" directionText="Previous" onClickHandler={previous} />
+                <CarouselControl className='control right' direction="next" directionText="Next" onClickHandler={next} />
+            </Carousel>
+        </div>
+
     )
 }
 

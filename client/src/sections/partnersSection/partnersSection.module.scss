@@ -2,16 +2,6 @@
     scroll-margin-top: 16rem;
     padding: 8rem 0;
     background-color: #fff;
-
-    h2 {
-        font-size: 3rem;
-        font-weight: 700;
-        text-align: center;
-        margin-bottom: 3rem;
-        font-family: ‘Dancing Script’,
-            cursive;
-
-    }
 }
 
 .container-styles {
@@ -46,16 +36,4 @@
             }
         }
     }
-}
-
-.illu-styles {
-    width: 80%;
-    margin: 0 auto;
-    margin-bottom: 8rem;
-    transform: scaleY(-1);
-
-    @media all and (max-width: 768px) {
-        margin-bottom: 5rem;
-    }
-
 }

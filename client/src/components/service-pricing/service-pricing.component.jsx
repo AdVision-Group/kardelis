@@ -5,10 +5,10 @@ import './service-pricing.styles.scss'
 const ServicePricing = ({ pricing: { title, services = [], additional } }) => {
 
     return (
-        <div className='service-pricing'>
+        <div id='cennik' className='service-pricing'>
             <div style={{ height: '8rem' }} />
 
-            <div id='cennik' className='pricing-table'>
+            <div className='pricing-table'>
                 <div className='head'>
                     <h3>{title}</h3>
                 </div>
@@ -25,7 +25,7 @@ const ServicePricing = ({ pricing: { title, services = [], additional } }) => {
 
             <p className='additional'>{additional}</p>
 
-            {title === "Visage" && (<div className='pricing-table'>
+            {title === "Vizáž" && (<div className='pricing-table'>
                 <div className='head'>
                     <h3>Depilácia</h3>
                 </div>
@@ -88,7 +88,7 @@ const ServicePricing = ({ pricing: { title, services = [], additional } }) => {
                 </div>
                 <div className='price-row'>
                     <div>
-                        Depilácia chrbát
+                        Depilácia chrbta
                     </div>
                     <div>
                         8€

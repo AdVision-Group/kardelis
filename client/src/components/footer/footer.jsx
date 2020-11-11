@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import { useMenuItems } from '../../hooks/useMenuItems'
 import scrollTo from 'gatsby-plugin-smoothscroll'
 import Image from 'gatsby-image'
+import { HeaderContext } from '../../contexts/header/header.context'
 
 import { footerStyles, rowStyles, colStyles } from './footer.module.scss'
 
 const Footer = () => {
-    const [navLinks] = useMenuItems()
+    const nav = useContext(HeaderContext)
     const data = useStaticQuery(graphql`
     {
       site {
@@ -60,7 +60,7 @@ const Footer = () => {
                             >
                                 <h3>{col.heading}</h3>
                                 {idx === 0 && <ul>
-                                    {navLinks.map(({ name, slug }, idx) => (
+                                    {nav.map(({ name, slug }, idx) => (
                                         <li key={idx}>
                                             <button onClick={() => scrollTo(slug)}>{name}</button>
                                         </li>

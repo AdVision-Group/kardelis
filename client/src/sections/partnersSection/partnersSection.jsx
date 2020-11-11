@@ -2,9 +2,11 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Image from 'gatsby-image'
 
-import { partnersStyles, containerStyles, illuStyles, partnerStyles } from './partnersSection.module.scss'
+import SectionHeading from '../../components/section-heading/section-heading.component'
 
-const PartnersSection = ({ data, wave }) => {
+import { partnersStyles, containerStyles, partnerStyles } from './partnersSection.module.scss'
+
+const PartnersSection = ({ data }) => {
     const { allFile: { nodes: images } } = useStaticQuery(graphql`
     {
       allFile(filter: {relativeDirectory: {eq: "partners"}}) {
@@ -34,10 +36,7 @@ const PartnersSection = ({ data, wave }) => {
                 data-sal-duration="1500"
                 data-sal-easing="ease"
             >
-                <h2>{data.heading}</h2>
-                <div className={illuStyles}>
-                    <Image fluid={wave} />
-                </div>
+                <SectionHeading title={data.heading} />
                 <div className={containerStyles}>
                     {partnersData.map(({ link, img }, idx) => {
                         return (

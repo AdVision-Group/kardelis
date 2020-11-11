@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import Image from 'gatsby-image'
 import scrollTo from 'gatsby-plugin-smoothscroll';
-import { useMenuItems } from '../../hooks/useMenuItems'
+import { HeaderContext } from '../../contexts/header/header.context'
 
 import HamMenu from '../hamMenu/hamMenu'
 import MenuDrawer from '../mobileDrawer/mobileDrawer'
+
 
 import { headerStyles, headerStylesActive, headerContainerStyles, logoStyles, logoStylesActive, headerContainerStylesActive } from './header.module.scss'
 
@@ -20,15 +21,12 @@ const Header = () => {
   }
 }
   `)
-
-  const [navLinks] = useMenuItems()
+  const nav = useContext(HeaderContext)
   const [showDrawer, setShowDrawer] = useState(false)
-
-
   const [showNav, setShowNav] = useState(false)
 
   useEffect(() => {
-    if (window.pageYOffset > 70) {
+    if (window.pageYOffset > 90) {
       setShowNav(true)
     }
   }, [])
@@ -60,7 +58,7 @@ const Header = () => {
           <HamMenu isOpen={showDrawer} handleClick={() => setShowDrawer(!showDrawer)} />
           <nav>
             <ul>
-              {navLinks.map(({ name, slug }, idx) => (
+              {nav.map(({ name, slug }, idx) => (
                 <li key={idx}>
                   <button onClick={() => scrollTo(slug)}>{name}</button>
                 </li>
@@ -69,7 +67,7 @@ const Header = () => {
           </nav>
         </div>
       </header>
-      <MenuDrawer showNav={showNav} menuItems={navLinks} setShowDrawer={setShowDrawer} showDrawer={showDrawer} />
+      <MenuDrawer showNav={showNav} menuItems={nav} setShowDrawer={setShowDrawer} showDrawer={showDrawer} />
     </React.Fragment>
   )
 }

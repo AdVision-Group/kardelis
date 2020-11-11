@@ -12,16 +12,28 @@ import SliderSection from '../sections/sliderSection/sliderSection'
 import ContactSection from '../sections/contactSection/contactSection'
 import MapSection from '../sections/mapSection/mapSection'
 
+//Providers
+import ContactProvider from '../contexts/contact/contact.context'
+import ServicesProvider from '../contexts/services/services.context'
+
 const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Domov" />
 
       <HeroSection data={data.site.siteMetadata.heroSection} />
-      <ServicesSection data={data.site.siteMetadata.services} wave={data.allImageSharp.nodes[0].fluid} />
-      <PartnersSection data={data.site.siteMetadata.partnersSection} wave={data.allImageSharp.nodes[0].fluid} />
+
+      <ServicesProvider>
+        <ServicesSection />
+      </ServicesProvider>
+
+      <PartnersSection data={data.site.siteMetadata.partnersSection} />
       <SliderSection />
-      <ContactSection data={data.site.siteMetadata.contactSection} wave={data.allImageSharp.nodes[0].fluid} />
+
+      <ContactProvider>
+        <ContactSection />
+      </ContactProvider>
+
       <MapSection />
 
     </Layout>
@@ -32,31 +44,7 @@ export const query = graphql`
 {
   site {
     siteMetadata {
-      heroSection {
-        heading
-        social {
-          link
-          name
-        }
-      }
-      services {
-        id
-        title
-        img
-        desc
-        heading
-        pricing {
-          title
-          additional
-          services {
-            name
-            price
-          }
-        }
-      }
-      contactSection {
-        heading
-      }
+
       partnersSection {
         heading
         partners {
@@ -64,18 +52,6 @@ export const query = graphql`
           name
           imgName
         }
-      }
-      header {
-        nav {
-          slug
-        }
-      }
-    }
-  }
-  allImageSharp(filter: {fluid: {originalName: {eq: "vlnka.png"}}}) {
-    nodes {
-      fluid {
-        ...GatsbyImageSharpFluid_withWebp
       }
     }
   }

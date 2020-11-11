@@ -1,30 +1,28 @@
-import React, { useState } from 'react'
-import Image from 'gatsby-image'
+import React, { useContext } from 'react'
+import { ContactContext } from '../../contexts/contact/contact.context'
 import CustomInput from '../../components/input/input'
 import CustomTextarea from '../../components/textarea/textarea'
 import CustomButton from '../../components/button/button'
+import SectionHeading from '../../components/section-heading/section-heading.component'
+import { contactStyles, rowStyles, colStyles } from './contactSection.module.scss'
 
-import { contactStyles, rowStyles, illuStyles, colStyles } from './contactSection.module.scss'
+const ConstactSection = () => {
+    const {
+        heading,
+        name,
+        email,
+        message,
+        setName,
+        setEmail,
+        setMessage
+    } = useContext(ContactContext)
 
-const ConstactSection = ({ data, wave }) => {
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [message, setMessage] = useState('')
-
-    const { heading } = data
     return (
         <section id='kontakt' className={contactStyles}>
             <div className='container'>
                 <div className={rowStyles}>
                     <div className={colStyles}>
-                        <h2
-                            data-sal="fade"
-                            data-sal-duration="1500"
-                            data-sal-easing="ease"
-                        >{heading}</h2>
-                        <div className={illuStyles}>
-                            <Image fluid={wave} />
-                        </div>
+                        <SectionHeading title={heading} />
                     </div>
                     <div className={colStyles}>
                         <form
@@ -66,7 +64,7 @@ const ConstactSection = ({ data, wave }) => {
                     </div>
                 </div>
             </div>
-        </section>
+        </section >
     )
 }
 

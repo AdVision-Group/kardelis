@@ -3,7 +3,15 @@
 
 @import url('../../styles/_variables.scss');
 
+@font-face {
+  font-family: akaylaScript;
+  src: url('../../fonts/AkaylaScript_PERSONAL.ttf');
+}
 
+@font-face {
+  font-family: akaylaScriptDecor;
+  src: url('../../fonts/akayla-script.scriptdecopersonaluse.ttf');
+}
 
 *,
 *::before,

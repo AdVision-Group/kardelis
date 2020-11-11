@@ -6,7 +6,7 @@ import './service-icon.styles.scss'
 
 const ServiceIcon = ({ title, fluid, handleClick, active }) => {
     return (
-        <div className={`${active ? "active" : ""} service-icon`} onClick={handleClick}>
+        <div role='button' className={`${active ? "active" : ""} service-icon`} onClick={handleClick}>
             <div className='image-container'>
                 <Image fluid={fluid} alt={title} />
             </div>

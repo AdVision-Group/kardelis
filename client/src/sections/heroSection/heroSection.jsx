@@ -1,10 +1,9 @@
 import React from 'react'
-// import { useStaticQuery, graphql } from 'gatsby'
-// import Image from 'gatsby-image'
+import { useStaticQuery, graphql } from 'gatsby'
+import Image from 'gatsby-image'
 import scrollTo from 'gatsby-plugin-smoothscroll'
 // import Video from '../../components/video/video'
 import bgVideo from '../../images/landing-page-video.mp4'
-import CustomButton from '../../components/button/button'
 
 // import { FaFacebook, FaInstagram } from 'react-icons/fa'
 import {
@@ -14,26 +13,22 @@ import {
     bgVideoStyles,
     bgOverlay,
     contentStyles,
-    videoContainer
+    videoContainer,
+    headingContainer,
+    kStyles,
+    ctaStyles
 } from "./heroSection.module.scss"
 
-const HeroSection = ({ data }) => {
-    // const query = useStaticQuery(graphql`
-    // {
-    // allImageSharp(filter: {fluid: {originalName: {eq: "logo.png"}}}) {
-    //     nodes {
-    //     fluid {
-    //         ...GatsbyImageSharpFluid_withWebp
-    //     }
-    //     }
-    // }
-    // }
-    // `)
-    const {
-        heading,
-        // social
-    } = data
-    // const logoImg = query.allImageSharp.nodes[0].fluid
+const HeroSection = () => {
+    const data = useStaticQuery(graphql`
+    {
+      imageSharp(fluid: {originalName: {eq: "arrow.png"}}) {
+        fluid {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+  `)
 
     return (
         <section
@@ -44,10 +39,10 @@ const HeroSection = ({ data }) => {
                 <video
                     className={bgVideoStyles}
                     height="100%"
-                    // width="100%"
                     loop
                     muted
                     autoPlay
+                    playsInline
                 >
                     <source
                         src={bgVideo}
@@ -62,50 +57,31 @@ const HeroSection = ({ data }) => {
             </div>
 
             <div className={contentStyles}>
+                <div className={headingContainer}>
+                    <h1
+                        data-sal="slide-down"
+                        data-sal-duration="1500"
+                        data-sal-easing="ease"
+                    >
+                        <span className={kStyles}>
+                            K
+                        </span>
+                        rása sa skladá
+                    <span>
+                            {' '}z maličkostí
+                    </span>
+                    </h1>
+                </div>
 
-                {/* <div className={logoStyles}
-                    data-sal="fade"
-                    data-sal-duration="1500"
-                    data-sal-easing="ease"
-                >
-                    <Image fluid={logoImg} />
-                </div> */}
 
-                <h1
-                    data-sal="slide-down"
-                    data-sal-duration="1500"
-                    data-sal-easing="ease"
-                >{heading}</h1>
-                {/* <div
-                    className={socialStyles}
-                    data-sal="slide-down"
-                    data-sal-duration="1500"
-                    data-sal-easing="ease"
-                >
-                    {social.map(({ name, link }, idx) => {
-                        if (name === 'Facebook') {
-                            return (
-                                <div key={idx}>
-                                    <a href={link}>
-                                        <FaFacebook />
-                                    </a>
-                                </div>
-                            )
-                        } else {
-                            return (
-                                <div key={idx}>
-                                    <a href={link}>
-                                        <FaInstagram />
-                                    </a>
-                                </div>
-                            )
-                        }
-                    })}
-                </div> */}
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, minus! Culpa debitis amet eius ducimus temporibus quae ratione quis eum veniam pariatur, placeat vitae facere laboriosam commodi quod necessitatibus hic laudantium ab recusandae! Mollitia quasi soluta ad sint dolorum totam!</p>
-                <CustomButton onClick={() => scrollTo('#sluzby')}>
-                    Zistiť viac
-                </CustomButton>
+                <button className={ctaStyles} onClick={() => scrollTo('#sluzby')}>
+                    <span>
+                        Zisti viac
+                    </span>
+                    <div>
+                        <Image fluid={data.imageSharp.fluid} />
+                    </div>
+                </button>
             </div>
         </section>
     )

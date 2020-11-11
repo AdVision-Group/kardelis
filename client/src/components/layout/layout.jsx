@@ -11,16 +11,18 @@ import PropTypes from "prop-types"
 import Header from "../header/header"
 import Footer from '../footer/footer'
 
+import HeaderProvider from '../../contexts/header/header.context'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./layout.scss"
 
 const Layout = ({ children }) => {
   return (
-    <React.Fragment>
+    <HeaderProvider>
       <Header />
       <main>{children}</main>
       <Footer />
-    </React.Fragment>
+    </HeaderProvider>
   )
 }
 
