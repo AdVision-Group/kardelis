@@ -12,6 +12,7 @@ import Header from "../header/header"
 import Footer from '../footer/footer'
 
 import HeaderProvider from '../../contexts/header/header.context'
+import FooterProvider from '../../contexts/footer/footer.context'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./layout.scss"
@@ -21,7 +22,9 @@ const Layout = ({ children }) => {
     <HeaderProvider>
       <Header />
       <main>{children}</main>
-      <Footer />
+      <FooterProvider>
+        <Footer />
+      </FooterProvider>
     </HeaderProvider>
   )
 }

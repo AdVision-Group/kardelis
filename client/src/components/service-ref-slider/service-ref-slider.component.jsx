@@ -45,7 +45,7 @@ const ServiceRefSlider = ({ items }) => {
                             onExited={() => setAnimating(false)}
                             key={`${idx}img`}
                         >
-                            <Image key={`${idx}image`} fluid={item.childImageSharp.fluid} />
+                            <Image key={`${idx}image`} fluid={item.childImageSharp.fluid} alt={item.childImageSharp.fluid.originalName} />
                             {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
                         </CarouselItem>
                     );

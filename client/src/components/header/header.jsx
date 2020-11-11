@@ -21,7 +21,7 @@ const Header = () => {
   }
 }
   `)
-  const nav = useContext(HeaderContext)
+  const { nav } = useContext(HeaderContext)
   const [showDrawer, setShowDrawer] = useState(false)
   const [showNav, setShowNav] = useState(false)
 

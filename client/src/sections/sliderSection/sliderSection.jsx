@@ -11,6 +11,7 @@ const SliderSection = () => {
           childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid_withWebp
+              originalName
             }
           }
         }

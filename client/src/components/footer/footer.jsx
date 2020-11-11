@@ -1,43 +1,13 @@
 import React, { useContext } from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import scrollTo from 'gatsby-plugin-smoothscroll'
 import Image from 'gatsby-image'
-import { HeaderContext } from '../../contexts/header/header.context'
+import { FooterContext } from '../../contexts/footer/footer.context'
 
 import { footerStyles, rowStyles, colStyles } from './footer.module.scss'
 
 const Footer = () => {
-    const nav = useContext(HeaderContext)
-    const data = useStaticQuery(graphql`
-    {
-      site {
-        siteMetadata {
-          footerSection {
-            cols {
-              address {
-                rows
-              }
-              heading
-              links {
-                link
-                name
-                slug
-              }
-            }
-          }
-        }
-      }
-    allImageSharp(filter: {fluid: {originalName: {eq: "logo-old.png"}}}) {
-        nodes {
-            fluid {
-                ...GatsbyImageSharpFluid_withWebp
-            }
-        }
-    }
-    }
-  `)
-
-    const { cols } = data.site.siteMetadata.footerSection
+    const { logo, cols: { sitemap, services, contact, personalInfo } } = useContext(FooterContext)
 
     return (
         <footer className={footerStyles}>
@@ -45,46 +15,48 @@ const Footer = () => {
                 <div className={rowStyles}>
                     <div className={colStyles}>
                         <div>
-                            <Image fluid={data.allImageSharp.nodes[0].fluid} />
+                            <Image fluid={logo} alt={logo.originalName} />
                         </div>
                     </div>
-                    {cols.map((col, idx) => {
-                        return (
-                            <div
-                                className={colStyles}
-                                key={idx}
-                                data-sal="fade"
-                                data-sal-duration="1500"
-                                data-sal-easing="ease"
-                                data-sal-delay={`${idx}00`}
-                            >
-                                <h3>{col.heading}</h3>
-                                {idx === 0 && <ul>
-                                    {nav.map(({ name, slug }, idx) => (
-                                        <li key={idx}>
-                                            <button onClick={() => scrollTo(slug)}>{name}</button>
-                                        </li>
-                                    ))}
-                                </ul>}
-                                {col.address && <address>
-                                    {col.address.rows.map((row, idx) => {
-                                        return <p key={idx}>{row}</p>
-                                    })}
-                                </address>
-                                }
-                                {col.links && <ul>
-                                    {col.links.map(({ link, name, slug }, idx) => {
-                                        return (
-                                            <li key={idx}>
-                                                <button onClick={() => scrollTo(link)}>{name}</button>
-                                            </li>
-                                        )
-                                    })}
-                                </ul>
-                                }
-                            </div>
-                        )
-                    })}
+                    <div className={colStyles}>
+                        <h3>{sitemap.heading}</h3>
+                        <ul>
+                            {sitemap.nav.map(({ name, slug }, idx) => (
+                                <li key={idx}>
+                                    <button onClick={() => scrollTo(slug)}>{name}</button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className={colStyles}>
+                        <h3>{services.heading}</h3>
+                        <ul>
+                            {services.links.map(({ link, name }, idx) => (
+                                <li key={idx}>
+                                    <button onClick={() => scrollTo('#sluzby')}>{name}</button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className={colStyles}>
+                        <h3>{contact.heading}</h3>
+                        <address>
+                            {contact.address.rows.map((row, idx) => {
+                                return <p key={idx}>{row}</p>
+                            })}
+                        </address>
+
+                    </div>
+                    <div className={colStyles}>
+                        <h3>{personalInfo.heading}</h3>
+                        <ul>
+                            {personalInfo.links.map(({ slug, name }, idx) => (
+                                <li key={idx}>
+                                    <Link to={slug}>{name}</Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </footer>

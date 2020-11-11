@@ -81,7 +81,7 @@ const ServicesSection = () => {
         </div>
 
         <div className={'illu-styles-bottom'}>
-          <Image fluid={wave} />
+          <Image fluid={wave} alt={wave.originalName} />
         </div>
       </div>
 

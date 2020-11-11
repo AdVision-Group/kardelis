@@ -42,7 +42,7 @@ const CustomSlider = ({ items }) => {
                         onExited={() => setAnimating(false)}
                         key={idx}
                     >
-                        <Image key={idx} fluid={item.childImageSharp.fluid} />
+                        <Image key={idx} fluid={item.childImageSharp.fluid} alt={item.childImageSharp.fluid.originalName} />
                         {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
                     </CarouselItem>
                 );

@@ -24,6 +24,7 @@ const ServiceProvider = ({ children }) => {
                 childImageSharp {
                     fluid {
                     ...GatsbyImageSharpFluid_withWebp
+                    originalName
                     }
                 }
                 }
@@ -33,6 +34,7 @@ const ServiceProvider = ({ children }) => {
                 childImageSharp {
                 fluid {
                     ...GatsbyImageSharpFluid_withWebp
+                    originalName
                 }
                 }
             }
@@ -42,6 +44,7 @@ const ServiceProvider = ({ children }) => {
                 childImageSharp {
                 fluid {
                     ...GatsbyImageSharpFluid_withWebp
+                    originalName
                 }
                 }
             }
@@ -51,6 +54,7 @@ const ServiceProvider = ({ children }) => {
                 nodes {
                 fluid {
                     ...GatsbyImageSharpFluid_withWebp
+                    originalName
                 }
                 }
   }

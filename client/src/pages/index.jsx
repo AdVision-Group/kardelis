@@ -1,5 +1,4 @@
 import React from "react"
-import { graphql } from 'gatsby'
 
 import Layout from "../components/layout/layout"
 import SEO from "../components/seo"
@@ -15,49 +14,35 @@ import MapSection from '../sections/mapSection/mapSection'
 //Providers
 import ContactProvider from '../contexts/contact/contact.context'
 import ServicesProvider from '../contexts/services/services.context'
+import PartnersProvider from '../contexts/partners/partners.context'
+import MapProvider from '../contexts/map/map.context'
 
-const IndexPage = ({ data }) => {
+const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Domov" />
 
-      <HeroSection data={data.site.siteMetadata.heroSection} />
+      <HeroSection />
 
       <ServicesProvider>
         <ServicesSection />
       </ServicesProvider>
 
-      <PartnersSection data={data.site.siteMetadata.partnersSection} />
+      <PartnersProvider>
+        <PartnersSection />
+      </PartnersProvider>
       <SliderSection />
 
       <ContactProvider>
         <ContactSection />
       </ContactProvider>
 
-      <MapSection />
+      <MapProvider>
+        <MapSection />
+      </MapProvider>
 
     </Layout>
   )
 }
 
-export const query = graphql`
-{
-  site {
-    siteMetadata {
-
-      partnersSection {
-        heading
-        partners {
-          link
-          name
-          imgName
-        }
-      }
-    }
-  }
-}
-
-
-
-`
 export default IndexPage

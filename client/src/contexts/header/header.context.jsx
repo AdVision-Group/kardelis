@@ -30,7 +30,7 @@ const HeaderProvider = ({ children }) => {
     ]
 
     return (
-        <HeaderContext.Provider value={nav}>
+        <HeaderContext.Provider value={{ nav }}>
             {children}
         </HeaderContext.Provider>
     )

@@ -1,33 +1,13 @@
-import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import React, { useContext } from 'react'
 import Image from 'gatsby-image'
+import { PartnersContext } from '../../contexts/partners/partners.context'
 
 import SectionHeading from '../../components/section-heading/section-heading.component'
 
 import { partnersStyles, containerStyles, partnerStyles } from './partnersSection.module.scss'
 
-const PartnersSection = ({ data }) => {
-    const { allFile: { nodes: images } } = useStaticQuery(graphql`
-    {
-      allFile(filter: {relativeDirectory: {eq: "partners"}}) {
-        nodes {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
-    }
-  `)
-
-    const partnersData = data.partners.map(partner => {
-        const img = images.find(img => img.childImageSharp.fluid.src.includes(partner.imgName))
-        return {
-            img,
-            ...partner
-        }
-    })
+const PartnersSection = () => {
+    const { heading, partners } = useContext(PartnersContext)
 
     return (
         <section id='partneri' className={partnersStyles}>
@@ -36,9 +16,9 @@ const PartnersSection = ({ data }) => {
                 data-sal-duration="1500"
                 data-sal-easing="ease"
             >
-                <SectionHeading title={data.heading} />
+                <SectionHeading title={heading} />
                 <div className={containerStyles}>
-                    {partnersData.map(({ link, img }, idx) => {
+                    {partners.map(({ img }, idx) => {
                         return (
                             <div
                                 className={partnerStyles}
@@ -48,10 +28,7 @@ const PartnersSection = ({ data }) => {
                                 data-sal-easing="ease"
                                 data-sal-delay={`${idx}00`}
                             >
-                                <a href={link}>
-                                    <Image fluid={img.childImageSharp.fluid} />
-                                </a>
-
+                                <Image fluid={img.childImageSharp.fluid} alt={img.childImageSharp.fluid.originalName} />
                             </div>
                         )
                     })}
